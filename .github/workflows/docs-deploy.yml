@@ -46,4 +46,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: pnpm dlx --package=netlify-cli netlify deploy --dir=apps/docs/dist --prod --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+        run: pnpm dlx --package=netlify-cli netlify deploy --filter @drobinetm/docs-countries-flags --dir=apps/docs/dist --prod --no-build --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"

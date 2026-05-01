@@ -11,23 +11,21 @@
     "url": "https://github.com/drobinetm/drm-countries-flags-component"
   },
   "scripts": {
-    "build": "pnpm -r build",
+    "build": "pnpm build:core && pnpm build:angular && pnpm build:react && pnpm build:vue && pnpm --filter @drobinetm/eval-angular-countries-flags build && pnpm --filter @drobinetm/eval-react-countries-flags build && pnpm --filter @drobinetm/eval-vue-countries-flags build && pnpm build:docs",
+    "build:packages": "pnpm build:core && pnpm build:angular && pnpm build:react && pnpm build:vue",
     "build:core": "pnpm --filter @drobinetm/countries-flags-core build",
     "build:angular": "pnpm --filter @drobinetm/angular-countries-flags build",
     "build:react": "pnpm --filter @drobinetm/react-countries-flags build",
     "build:vue": "pnpm --filter @drobinetm/vue-countries-flags build",
     "build:docs": "pnpm --filter @drobinetm/docs-countries-flags build",
+    "changelog:update": "node scripts/update-changelogs.mjs",
     "dev:docs": "pnpm --filter @drobinetm/docs-countries-flags dev",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "typecheck": "pnpm -r typecheck",
-    "clean": "pnpm -r clean && rm -rf node_modules",
-    "changeset": "changeset",
-    "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "clean": "pnpm -r clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7",
     "@typescript-eslint/eslint-plugin": "^8.59.1",
     "@typescript-eslint/parser": "^8.59.1",
     "eslint": "^9.39.4",
@@ -36,7 +34,15 @@
     "vue-eslint-parser": "^10.2.0"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=9.0.0"
+    "node": ">=22.12.0",
+    "pnpm": ">=10.29.3"
+  },
+  "pnpm": {
+    "allowBuilds": {
+      "@parcel/watcher": true,
+      "esbuild": true,
+      "sharp": true,
+      "unix-dgram": true
+    }
   }
 }

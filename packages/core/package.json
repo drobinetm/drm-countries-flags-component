@@ -1,6 +1,6 @@
 {
   "name": "@drobinetm/countries-flags-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shared types, data and utilities for @drobinetm countries-flags components",
   "author": "Diovi Robinet",
   "license": "MIT",

@@ -54,18 +54,7 @@ npm install @drobinetm/vue-countries-flags flag-icons
 yarn add @drobinetm/vue-countries-flags flag-icons
 ```
 
-## Packages
-
-The monorepo includes a shared core package and one UI package per framework.
-
-| Package                                                    | Version | Description                               |
-| ---------------------------------------------------------- | ------- | ----------------------------------------- |
-| [`@drobinetm/countries-flags-core`](./packages/core)       | 1.0.0   | Shared types, country data, and utilities |
-| [`@drobinetm/angular-countries-flags`](./packages/angular) | 1.0.0   | Angular 17+ standalone component          |
-| [`@drobinetm/react-countries-flags`](./packages/react)     | 1.0.0   | React 18+ functional component            |
-| [`@drobinetm/vue-countries-flags`](./packages/vue)         | 1.0.0   | Vue 3 Composition API component           |
-
-## Shared API
+## Functionalities
 
 All implementations follow the same public contract across Angular, React, and
 Vue.
@@ -90,7 +79,7 @@ interface CountryChangeEvent {
 }
 ```
 
-## Theming
+## Styling
 
 You can keep the bundled styles and override specific slots, or set
 `unstyled` and style the component with your own CSS or UI library.
@@ -121,26 +110,6 @@ The project site includes docs, demos, and support.
 - React documentation: https://drm-countries-flags.netlify.app/docs/react/
 - Vue documentation: https://drm-countries-flags.netlify.app/docs/vue/
 - Theming guide: https://drm-countries-flags.netlify.app/docs/theming/
-
-## Development
-
-The repository is a `pnpm` monorepo.
-
-```bash
-pnpm install
-pnpm build
-pnpm build:core
-pnpm build:angular
-pnpm build:react
-pnpm build:vue
-pnpm dev:docs
-```
-
-Versioning and changelog generation are managed with Changesets.
-
-- Create a release note with `pnpm changeset`
-- Update package versions with `pnpm version-packages`
-- Build and publish with `pnpm release`
 
 ## Support
 

@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - packages/core/**
+      - packages/core/package.json
       - .github/workflows/core-release.yml
   workflow_dispatch:
     inputs:
@@ -21,10 +21,11 @@ permissions:
   id-token: write
 
 jobs:
-  release-core:
-    name: Release Core package
+  release:
+    name: Publish core package
     runs-on: ubuntu-latest
     env:
+      PACKAGE_DIR: packages/core
       NPM_DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist-tag || 'latest' }}
 
     steps:
@@ -45,17 +46,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Core package
+      - name: Build package
         run: pnpm --filter @drobinetm/countries-flags-core build
 
-      - name: Ensure version is not already published
+      - name: Publish package if version is new
+        shell: bash
         run: |
-          VERSION=$(node -p "require('./packages/core/package.json').version")
-          if npm view "@drobinetm/countries-flags-core@${VERSION}" version >/dev/null 2>&1; then
-            echo "Version ${VERSION} is already published to npm"
-            exit 1
+          set -euo pipefail
+          package_name=$(npm pkg get name --prefix "$PACKAGE_DIR" | tr -d '"')
+          package_version=$(npm pkg get version --prefix "$PACKAGE_DIR" | tr -d '"')
+
+          if npm view "$package_name@$package_version" version >/dev/null 2>&1; then
+            printf '%s@%s already published, skipping\n' "$package_name" "$package_version"
+            exit 0
           fi
 
-      - name: Release Core package
-        run: npm publish --access public --tag "$NPM_DIST_TAG"
-        working-directory: packages/core
+          printf 'Publishing %s@%s\n' "$package_name" "$package_version"
+          pnpm --filter "$package_name" publish --access public --tag "$NPM_DIST_TAG" --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

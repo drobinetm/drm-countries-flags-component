@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - packages/react/**
-      - packages/core/**
+      - packages/react/package.json
       - .github/workflows/react-release.yml
   workflow_dispatch:
     inputs:
@@ -22,10 +21,11 @@ permissions:
   id-token: write
 
 jobs:
-  release-react:
-    name: Release React package
+  release:
+    name: Publish react package
     runs-on: ubuntu-latest
     env:
+      PACKAGE_DIR: packages/react
       NPM_DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist-tag || 'latest' }}
 
     steps:
@@ -46,20 +46,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Core package
+      - name: Build package dependencies
         run: pnpm --filter @drobinetm/countries-flags-core build
 
-      - name: Build React package
+      - name: Build package
         run: pnpm --filter @drobinetm/react-countries-flags build
 
-      - name: Ensure version is not already published
+      - name: Publish package if version is new
+        shell: bash
         run: |
-          VERSION=$(node -p "require('./packages/react/package.json').version")
-          if npm view "@drobinetm/react-countries-flags@${VERSION}" version >/dev/null 2>&1; then
-            echo "Version ${VERSION} is already published to npm"
-            exit 1
+          set -euo pipefail
+          package_name=$(npm pkg get name --prefix "$PACKAGE_DIR" | tr -d '"')
+          package_version=$(npm pkg get version --prefix "$PACKAGE_DIR" | tr -d '"')
+
+          if npm view "$package_name@$package_version" version >/dev/null 2>&1; then
+            printf '%s@%s already published, skipping\n' "$package_name" "$package_version"
+            exit 0
           fi
 
-      - name: Release React package
-        run: npm publish --access public --tag "$NPM_DIST_TAG"
-        working-directory: packages/react
+          printf 'Publishing %s@%s\n' "$package_name" "$package_version"
+          pnpm --filter "$package_name" publish --access public --tag "$NPM_DIST_TAG" --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

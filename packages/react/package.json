@@ -1,6 +1,6 @@
 {
   "name": "@drobinetm/react-countries-flags",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React 18+ component to display a country selector with flag icons",
   "author": "Diovi Robinet",
   "license": "MIT",
@@ -34,7 +34,7 @@
     },
     "./styles": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/styles.css"
+      "default": "./dist/react-countries-flags.css"
     },
     "./package.json": "./package.json"
   },
