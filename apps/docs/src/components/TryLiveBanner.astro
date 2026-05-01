@@ -1,0 +1,132 @@
+---
+interface Props {
+  variant: 'vue' | 'react' | 'angular'
+  href?: string
+  title: string
+  description: string
+  buttonLabel: string
+  disabled?: boolean
+}
+
+const { variant, href = '#', title, description, buttonLabel, disabled = false } = Astro.props
+const icon = title === 'Styling examples' ? '📖' : '⚡'
+---
+
+<section class={`try-live try-live--${variant}`} aria-label={`${title} callout`}>
+  <div class="try-live__icon" aria-hidden="true">{icon}</div>
+  <div class="try-live__copy">
+    <p class="try-live__title">{title}</p>
+    <p class="try-live__description">{description}</p>
+  </div>
+  {
+    disabled ? (
+      <span class="try-live__button try-live__button--disabled">{buttonLabel}</span>
+    ) : (
+      <a href={href} class="try-live__button">
+        {buttonLabel}
+        <span aria-hidden="true">→</span>
+      </a>
+    )
+  }
+</section>
+
+<style>
+  .try-live {
+    --accent: var(--cyan);
+    --accent-soft: rgba(89, 213, 255, 0.14);
+    --button-bg: linear-gradient(180deg, #71dfff 0%, #4ab8ef 100%);
+    --button-text: #082238;
+    --button-border: rgba(97, 218, 251, 0.45);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 1.55rem 1.7rem;
+    border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--accent) 85%, transparent);
+    background: linear-gradient(180deg, rgba(14, 23, 44, 0.94), rgba(11, 19, 38, 0.96));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  }
+
+  .try-live--vue {
+    --accent: #41d392;
+    --button-bg: linear-gradient(180deg, #59db9b 0%, #46c382 100%);
+    --button-text: #08291a;
+    --button-border: rgba(90, 225, 157, 0.45);
+  }
+
+  .try-live--react {
+    --accent: #59d5ff;
+    --button-bg: linear-gradient(180deg, #77e0ff 0%, #59d5ff 100%);
+    --button-text: #07253a;
+    --button-border: rgba(97, 218, 251, 0.45);
+  }
+
+  .try-live--angular {
+    --accent: #ff2357;
+    --button-bg: linear-gradient(180deg, #ff6689 0%, #f43f5e 100%);
+    --button-text: #2f0714;
+    --button-border: rgba(244, 63, 94, 0.42);
+  }
+
+  .try-live__icon {
+    color: var(--accent);
+    font-size: 1.35rem;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  .try-live__copy {
+    min-width: 0;
+  }
+
+  .try-live__title {
+    margin: 0 0 0.35rem;
+    color: var(--accent);
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .try-live__description {
+    margin: 0;
+    max-width: 62ch;
+    color: rgba(202, 216, 242, 0.48);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .try-live__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-width: 9.4rem;
+    min-height: 2.95rem;
+    padding: 0.8rem 1.1rem;
+    border-radius: 16px;
+    border: 1px solid var(--button-border);
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: transform 180ms ease, filter 180ms ease;
+  }
+
+  .try-live__button:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.04);
+  }
+
+  .try-live__button--disabled {
+    cursor: default;
+  }
+
+  @media (max-width: 860px) {
+    .try-live {
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+  }
+</style>

@@ -1,0 +1,258 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import TryLiveBanner from '../../components/TryLiveBanner.astro'
+import CopyCodeBlock from '../../components/CopyCodeBlock.astro'
+
+const installCode = `pnpm add @drobinetm/react-countries-flags flag-icons`
+
+const stylesImportCode = `// main.tsx or App.tsx
+import 'flag-icons/css/flag-icons.min.css'
+import '@drobinetm/react-countries-flags/styles'`
+
+const basicUsageCode = `import { useState } from 'react'
+import { CountriesFlags } from '@drobinetm/react-countries-flags'
+
+export function App() {
+  const [code, setCode] = useState<string | null>(null)
+
+  return (
+    <CountriesFlags
+      value={code}
+      onChange={(event) => setCode(event.code)}
+      placeholder="Select a country"
+    />
+  )
+}`
+
+const filterCode = `<CountriesFlags
+  value={code}
+  onChange={(event) => setCode(event.code)}
+  filter={['es', 'us', 'br', 'ar', 'mx']}
+  max={10}
+/>`
+
+const changeEventCode = `import type { CountryChangeEvent } from '@drobinetm/react-countries-flags'
+
+function handleChange(event: CountryChangeEvent) {
+  console.log(event.code)    // 'es'
+  console.log(event.country) // { code: 'es', name: 'Spain' }
+}
+
+<CountriesFlags value={code} onChange={handleChange} />`
+
+const tailwindCode = `import { CountriesFlags } from '@drobinetm/react-countries-flags'
+
+<CountriesFlags
+  value={code}
+  onChange={(event) => setCode(event.code)}
+  unstyled
+  classNames={{
+    root: 'w-full',
+    trigger:
+      'flex h-11 w-full items-center justify-between rounded-xl border border-slate-300 bg-white px-3 text-left text-slate-900 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-sky-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100',
+    triggerContent: 'flex min-w-0 items-center gap-2',
+    placeholder: 'text-slate-400 dark:text-slate-500',
+    label: 'truncate',
+    chevron: 'text-slate-500',
+    list:
+      'mt-2 max-h-64 overflow-auto rounded-xl border border-slate-200 bg-white p-1 shadow-2xl dark:border-slate-800 dark:bg-slate-950',
+    option: 'flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm',
+    optionActive: 'bg-slate-100 dark:bg-slate-900',
+    optionSelected: 'bg-sky-600 text-white',
+    optionName: 'truncate',
+  }}
+  styles={{
+    flag: { borderRadius: '9999px' },
+  }}
+/>`
+
+const bootstrapCode = `import { CountriesFlags } from '@drobinetm/react-countries-flags'
+
+<CountriesFlags
+  value={code}
+  onChange={(event) => setCode(event.code)}
+  unstyled
+  classNames={{
+    root: 'w-100',
+    trigger: 'btn btn-outline-secondary w-100 d-flex align-items-center justify-content-between rounded-3 px-3 py-2',
+    triggerContent: 'd-flex align-items-center gap-2 text-truncate',
+    placeholder: 'text-secondary',
+    list: 'mt-2 list-unstyled border rounded-3 bg-body shadow-lg p-1',
+    option: 'd-flex align-items-center gap-2 rounded-3 px-3 py-2',
+    optionActive: 'bg-light',
+    optionSelected: 'bg-primary text-white',
+    optionName: 'text-truncate',
+  }}
+  styles={{
+    root: { minWidth: '280px' },
+    flag: { borderRadius: '50%' },
+  }}
+/>`
+
+const inlineStylesCode = `import { CountriesFlags } from '@drobinetm/react-countries-flags'
+
+<CountriesFlags
+  value={code}
+  onChange={(event) => setCode(event.code)}
+  unstyled
+  styles={{
+    root: { width: '100%', minWidth: 280 },
+    trigger: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: '100%',
+      minHeight: 44,
+      padding: '0 14px',
+      border: '1px solid #d4d4d8',
+      borderRadius: 16,
+      backgroundColor: '#ffffff',
+      color: '#111827',
+    },
+    triggerContent: { display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 },
+    placeholder: { color: '#6b7280' },
+    list: {
+      marginTop: 8,
+      padding: 6,
+      listStyle: 'none',
+      border: '1px solid #e5e7eb',
+      borderRadius: 16,
+      backgroundColor: '#ffffff',
+      boxShadow: '0 24px 48px rgba(15, 23, 42, 0.18)',
+    },
+    option: { display: 'flex', alignItems: 'center', gap: 8, padding: '10px 12px', borderRadius: 12 },
+    optionActive: { backgroundColor: '#f3f4f6' },
+    optionSelected: { backgroundColor: '#2563eb', color: '#ffffff' },
+    flag: { borderRadius: '9999px' },
+  }}
+/>`
+---
+
+<BaseLayout
+  title="React — Docs"
+  description="React 18+ controlled component for country selection with flag icons. Supports onChange callback and forwardRef."
+  currentPath="/docs/react"
+>
+  <div class="shell" style="padding: 3rem 0 5rem;">
+    <div style="max-width: 820px;">
+
+      <p class="eyebrow">Library</p>
+      <h1 style="margin: 0 0 0.5rem; font-size: var(--text-section); line-height: 0.95; letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);">
+        <span class="badge badge--react" style="font-size: 1rem; margin-right: 0.6rem; vertical-align: middle;">React 18+</span>
+        <br/>react-countries-flags
+      </h1>
+        <p class="subhead" style="margin: 1rem 0 2.4rem;">
+          Controlled React component with <code>forwardRef</code>, typed props,
+          and country data from the core package.
+        </p>
+        <div style="margin: 0 0 2.4rem;">
+          <TryLiveBanner
+            variant="react"
+            href="/demos/react"
+            title="Try it live"
+            description="Open the React demo page to try the component."
+            buttonLabel="Open React demo"
+          />
+        </div>
+        <div style="margin: 0 0 2.4rem;">
+          <TryLiveBanner
+            variant="react"
+            href="/docs/theming#react"
+            title="Styling examples"
+            description="Go to the React styling section for Tailwind, shadcn/ui, Bootstrap, inline styles, and the slot map."
+            buttonLabel="Open React styling"
+          />
+        </div>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Installation</h2>
+        <CopyCodeBlock code={installCode} lang="bash" ariaLabel="Copy React install command" />
+        <p class="panel-copy" style="margin-top: 0.8rem;">Import the CSS in your entry point:</p>
+        <CopyCodeBlock code={stylesImportCode} lang="tsx" ariaLabel="Copy React styles import" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Basic usage</h2>
+        <p class="panel-copy">
+          Use the controlled API with <code>value</code> and <code>onChange</code>.
+        </p>
+        <CopyCodeBlock code={basicUsageCode} lang="tsx" ariaLabel="Copy React basic usage" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Filter &amp; limit</h2>
+        <p class="panel-copy">
+          Combine <code>filter</code> and <code>max</code> to expose only the countries your flow needs.
+        </p>
+        <CopyCodeBlock code={filterCode} lang="tsx" ariaLabel="Copy React filter example" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Access the full Country object</h2>
+        <p class="panel-copy">
+          The callback receives both the ISO code and the resolved country object.
+        </p>
+        <CopyCodeBlock code={changeEventCode} lang="tsx" ariaLabel="Copy React change event example" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">CSS integrations</h2>
+        <p class="panel-copy">
+          In React, you can keep the bundled styles, override specific slots, or
+          disable them completely with <code>unstyled</code>. The examples below
+          are valid for React projects only.
+        </p>
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          Use <code>classNames</code> and <code>styles</code> to map the
+          component to Tailwind or shadcn/ui.
+        </p>
+        <CopyCodeBlock code={tailwindCode} lang="tsx" ariaLabel="Copy React Tailwind example" />
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          You can also map the slots to Bootstrap utility classes.
+        </p>
+        <CopyCodeBlock code={bootstrapCode} lang="tsx" ariaLabel="Copy React Bootstrap example" />
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          If your styles are generated at runtime, use the
+          <code>styles</code> prop directly.
+        </p>
+        <CopyCodeBlock code={inlineStylesCode} lang="tsx" ariaLabel="Copy React inline styles example" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Props</h2>
+        <div class="glass card--xl">
+          <table class="api-table">
+            <thead>
+              <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>value</code></td><td><code>string | null</code></td><td><code>null</code></td><td>Controlled selected code.</td></tr>
+              <tr><td><code>onChange</code></td><td><code>(e: CountryChangeEvent) =&gt; void</code></td><td>—</td><td>Selection callback.</td></tr>
+              <tr><td><code>max</code></td><td><code>number</code></td><td><code>0</code></td><td>Max countries shown.</td></tr>
+              <tr><td><code>filter</code></td><td><code>string[]</code></td><td><code>[]</code></td><td>ISO alpha-2 whitelist.</td></tr>
+              <tr><td><code>placeholder</code></td><td><code>string</code></td><td><code>"Select a country"</code></td><td>Placeholder text.</td></tr>
+              <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the component.</td></tr>
+              <tr><td><code>unstyled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Turns off the bundled UI styles.</td></tr>
+              <tr><td><code>className</code></td><td><code>string</code></td><td><code>""</code></td><td>Additional CSS class names.</td></tr>
+              <tr><td><code>classNames</code></td><td><code>CountriesFlagsClassNames</code></td><td><code>&#123;&#125;</code></td><td>Classes by component slot.</td></tr>
+              <tr><td><code>styles</code></td><td><code>CountriesFlagsStyles</code></td><td><code>&#123;&#125;</code></td><td>Inline styles by component slot.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .doc-section { margin-bottom: 2.8rem; }
+  .doc-h2 { margin: 0 0 1rem; font-size: 1.5rem; font-weight: var(--weight-bold); letter-spacing: -0.02em; color: var(--text); padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); }
+  .api-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .api-table th { text-align: left; padding: 0.65rem 1rem; color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--line); font-weight: var(--weight-bold); }
+  .api-table td { padding: 0.75rem 1rem; color: var(--text-soft); border-bottom: 1px solid var(--line); vertical-align: top; }
+  .api-table tr:last-child td { border-bottom: none; }
+</style>

@@ -1,0 +1,287 @@
+.framework-demo__runtime-mount :where(.demo-app) {
+  min-height: auto !important;
+  background: transparent !important;
+  color: rgb(241, 245, 249) !important;
+  overflow: visible !important;
+}
+
+.framework-demo__runtime-mount :where(app-root > main) {
+  min-height: auto !important;
+  background: transparent !important;
+  color: rgb(241, 245, 249) !important;
+  overflow: visible !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-app > div) {
+  max-width: 100% !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.framework-demo__runtime-mount :where(app-root > main > div) {
+  max-width: 100% !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-app section) {
+  overflow: visible !important;
+}
+
+.framework-demo__runtime-mount :where(app-root section) {
+  overflow: visible !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-shell) {
+  gap: 1.6rem !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-cases-grid) {
+  gap: 1.3rem !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card) {
+  position: relative;
+  overflow: visible !important;
+  min-height: 15.1rem;
+  border: 1px solid rgba(62, 76, 104, 0.46) !important;
+  border-radius: 1.85rem !important;
+  background: linear-gradient(180deg, rgba(17, 21, 36, 0.985), rgba(15, 19, 33, 0.99)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(120, 146, 200, 0.045),
+    0 12px 24px rgba(3, 8, 20, 0.16) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card:has(.drm-cf__trigger[aria-expanded='true'])) {
+  z-index: 30;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__header) {
+  margin-bottom: 0.98rem !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__eyebrow) {
+  margin: 0 !important;
+  color: rgb(125, 211, 252) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 3.6px !important;
+  line-height: 16px !important;
+  text-transform: uppercase !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__title) {
+  margin: 0.5rem 0 0 !important;
+  color: rgb(255, 255, 255) !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  letter-spacing: normal !important;
+  line-height: 1.4 !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__copy) {
+  margin-bottom: 1.25rem !important;
+  max-width: 35rem;
+  color: rgb(203, 213, 225) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5rem !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__badge) {
+  min-width: auto !important;
+  width: auto !important;
+  border-radius: 9999px !important;
+  padding: 4px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+  line-height: 16px !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.framework-demo__runtime-mount :where(.demo-card__badge--default) {
+  border-color: rgba(53, 170, 138, 0.56) !important;
+  background: rgba(20, 74, 69, 0.42) !important;
+  color: rgb(167, 243, 208) !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__badge--max) {
+  border-color: rgba(37, 145, 190, 0.56) !important;
+  background: rgba(14, 58, 92, 0.42) !important;
+  color: #9de2ff !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__badge--filter) {
+  border-color: rgba(147, 76, 191, 0.56) !important;
+  background: rgba(77, 32, 103, 0.42) !important;
+  color: #e0b1ff !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__badge--combined) {
+  border-color: rgba(201, 154, 54, 0.58) !important;
+  background: rgba(95, 72, 18, 0.4) !important;
+  color: #ffd978 !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-card__filter-code) {
+  display: block !important;
+  margin-bottom: 1.15rem !important;
+  border: 1px solid rgba(18, 28, 53, 0.92);
+  border-radius: 1rem !important;
+  background: rgba(8, 12, 24, 0.92) !important;
+  color: rgba(229, 236, 248, 0.88) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.01em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.framework-demo__runtime-mount :where(.drm-cf, drm-countries-flags) {
+  display: block !important;
+  min-width: 0 !important;
+  width: min(100%, 220px) !important;
+  max-width: 220px !important;
+}
+
+.framework-demo__runtime-mount :where(drm-countries-flags) {
+  position: relative !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__trigger) {
+  display: flex !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  min-height: 3rem !important;
+  padding: 0 0.95rem !important;
+  border: 1px solid rgba(48, 61, 88, 0.78) !important;
+  border-radius: 1rem !important;
+  background: linear-gradient(180deg, rgba(14, 19, 34, 0.96), rgba(12, 17, 31, 0.98)) !important;
+  color: rgba(238, 242, 250, 0.96) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__trigger:hover) {
+  border-color: rgba(84, 106, 150, 0.86) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__trigger-content) {
+  gap: 0.66rem !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__placeholder) {
+  color: rgba(133, 147, 174, 0.72) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__label) {
+  color: rgba(238, 242, 250, 0.96) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__flag) {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  border-radius: 999px !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__chevron) {
+  color: rgba(163, 177, 204, 0.78) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__backdrop) {
+  z-index: 90 !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__list) {
+  z-index: 100 !important;
+  min-width: 100% !important;
+  margin-top: 0.35rem !important;
+  padding: 0.34rem !important;
+  border: 1px solid rgba(60, 75, 108, 0.82) !important;
+  border-radius: 1rem !important;
+  background: rgba(11, 15, 27, 0.985) !important;
+  box-shadow: 0 16px 30px rgba(2, 7, 18, 0.3) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__option) {
+  min-height: 2.7rem !important;
+  border-radius: 0.8rem !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__option:hover),
+.framework-demo__runtime-mount :where(.drm-cf__option--active) {
+  background: rgba(26, 36, 62, 0.92) !important;
+}
+
+.framework-demo__runtime-mount :where(.drm-cf__option--selected) {
+  background: rgba(34, 87, 151, 0.76) !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card) {
+  border: 1px solid rgba(62, 76, 104, 0.46) !important;
+  border-radius: 1.85rem !important;
+  background: linear-gradient(180deg, rgba(16, 20, 34, 0.985), rgba(14, 18, 31, 0.99)) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(120, 146, 200, 0.04),
+    0 12px 24px rgba(3, 8, 20, 0.14) !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__title) {
+  margin: 0 !important;
+  color: rgba(247, 249, 255, 0.98) !important;
+  font-size: 1.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.04em !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__grid) {
+  margin-top: 1.15rem !important;
+  gap: 1.5rem !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__list) {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__list li) {
+  color: rgba(205, 214, 231, 0.82) !important;
+  font-size: 0.94rem !important;
+  line-height: 1.58 !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__events) {
+  display: grid;
+  align-content: start;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__events-title) {
+  color: rgba(232, 238, 249, 0.94) !important;
+  font-size: 0.96rem !important;
+  font-weight: 600 !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__empty),
+.framework-demo__runtime-mount :where(.demo-notes-card__event-item) {
+  min-height: 2.75rem;
+  border-radius: 1rem !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__empty) {
+  border-color: rgba(70, 84, 114, 0.38) !important;
+  background: rgba(10, 15, 29, 0.52) !important;
+  color: rgba(144, 158, 183, 0.76) !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__event-item) {
+  border-color: rgba(70, 84, 114, 0.42) !important;
+  background: rgba(10, 15, 29, 0.64) !important;
+}
+
+.framework-demo__runtime-mount :where(.demo-notes-card__event-code) {
+  color: #8fdcff !important;
+}

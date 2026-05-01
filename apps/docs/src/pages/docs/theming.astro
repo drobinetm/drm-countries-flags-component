@@ -1,0 +1,359 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import CopyCodeBlock from '../../components/CopyCodeBlock.astro'
+
+const slotsCode = `type CountriesFlagsClassNames = {
+  root?: string
+  trigger?: string
+  triggerContent?: string
+  placeholder?: string
+  label?: string
+  chevron?: string
+  backdrop?: string
+  list?: string
+  empty?: string
+  option?: string
+  optionSelected?: string
+  optionActive?: string
+  flag?: string
+  optionName?: string
+}`
+
+const reactTailwindCode = `import { CountriesFlags } from '@drobinetm/react-countries-flags'
+
+<CountriesFlags
+  value={code}
+  onChange={(event) => setCode(event.code)}
+  unstyled
+  classNames={{
+    root: 'w-full',
+    trigger: 'flex h-11 w-full items-center justify-between rounded-xl border border-slate-300 bg-white px-3 shadow-sm dark:border-slate-700 dark:bg-slate-950',
+    triggerContent: 'flex min-w-0 items-center gap-2',
+    placeholder: 'text-slate-400 dark:text-slate-500',
+    label: 'truncate',
+    list: 'mt-2 max-h-64 overflow-auto rounded-xl border border-slate-200 bg-white p-1 shadow-2xl dark:border-slate-800 dark:bg-slate-950',
+    option: 'flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm',
+    optionActive: 'bg-slate-100 dark:bg-slate-900',
+    optionSelected: 'bg-sky-600 text-white',
+  }}
+  styles={{
+    flag: { borderRadius: '9999px' },
+  }}
+/>`
+
+const angularMaterialCode = [
+  "import { Component } from '@angular/core'",
+  "import { FormsModule } from '@angular/forms'",
+  "import { MatCardModule } from '@angular/material/card'",
+  "import { CountriesFlagsComponent } from '@drobinetm/angular-countries-flags'",
+  '',
+  '@Component({',
+  '  standalone: true,',
+  '  imports: [FormsModule, MatCardModule, CountriesFlagsComponent],',
+  '  template: `',
+  '    <mat-card appearance="outlined">',
+  '      <mat-card-content>',
+  '        <drm-countries-flags',
+  '          [(ngModel)]="selectedCode"',
+  '          [unstyled]="true"',
+  '          [classNames]="{',
+  "            trigger: 'mat-mdc-button-base w-full d-flex align-items-center justify-content-between px-3 py-3 rounded-4 border',",
+  "            triggerContent: 'd-flex align-items-center gap-2 text-truncate',",
+  "            placeholder: 'mat-body-medium text-medium-emphasis',",
+  "            list: 'mt-2 rounded-4 border bg-surface p-1 mat-elevation-z8',",
+  "            option: 'd-flex align-items-center gap-2 rounded-3 px-3 py-2',",
+  "            optionSelected: 'bg-primary text-white'",
+  '          }"',
+  '          [styles]="{ flag: { borderRadius: \"9999px\" } }"',
+  '        ></drm-countries-flags>',
+  '      </mat-card-content>',
+  '    </mat-card>',
+  '  `,',
+  '})',
+  'export class DemoComponent {',
+  '  selectedCode: string | null = null',
+  '}',
+].join('\n')
+
+const vueVuetifyCode = `<CountriesFlags
+  v-model="selectedCode"
+  :unstyled="true"
+  :class-names="{
+    root: 'w-100',
+    trigger: 'd-flex align-center justify-space-between w-100 px-4 py-3 rounded-lg border',
+    triggerContent: 'd-flex align-center ga-2 min-w-0',
+    placeholder: 'text-medium-emphasis',
+    list: 'mt-2 pa-2 rounded-lg border bg-surface elevation-8',
+    option: 'd-flex align-center ga-2 rounded-lg px-3 py-2',
+    optionActive: 'bg-grey-lighten-4',
+    optionSelected: 'bg-primary text-white',
+  }"
+  :styles="{
+    flag: { borderRadius: '9999px' },
+  }"
+/>`
+
+const inlineStylesCode = `styles={{
+  root: { width: '100%', minWidth: 280 },
+  trigger: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    minHeight: 44,
+    padding: '0 14px',
+    border: '1px solid #d4d4d8',
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
+    color: '#111827',
+  },
+  triggerContent: { display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 },
+  placeholder: { color: '#6b7280' },
+  list: {
+    marginTop: 8,
+    padding: 6,
+    listStyle: 'none',
+    border: '1px solid #e5e7eb',
+    borderRadius: 16,
+    backgroundColor: '#ffffff',
+    boxShadow: '0 24px 48px rgba(15, 23, 42, 0.18)',
+  },
+  option: { display: 'flex', alignItems: 'center', gap: 8, padding: '10px 12px', borderRadius: 12 },
+  optionActive: { backgroundColor: '#f3f4f6' },
+  optionSelected: { backgroundColor: '#2563eb', color: '#ffffff' },
+  flag: { borderRadius: '9999px' },
+}}`
+
+const cssVarsCode = `.drm-cf {
+  --drm-cf-bg: #ffffff;
+  --drm-cf-border: #d4d4d8;
+  --drm-cf-border-hover: #93c5fd;
+  --drm-cf-focus: #2563eb;
+  --drm-cf-radius: 16px;
+  --drm-cf-text: #111827;
+  --drm-cf-placeholder: #6b7280;
+  --drm-cf-dropdown-bg: #ffffff;
+  --drm-cf-accent: #2563eb;
+}`
+---
+
+<BaseLayout
+  title="Styling examples — Docs"
+  description="Styling examples for Angular, React, and Vue with Tailwind, Bootstrap, Angular Material, Vuetify, and inline styles."
+  currentPath="/docs/theming"
+>
+  <div class="shell" style="padding: 3rem 0 5rem;">
+    <div style="max-width: 960px;">
+      <p class="eyebrow">Theming</p>
+      <h1 class="page-title">Styling examples</h1>
+      <p class="subhead" style="margin: 1rem 0 2rem; max-width: 60rem;">
+        This page shows the main ways to style the component. Use
+        <code>classNames</code> for slot-level classes, <code>styles</code> for
+        inline styles, or keep the bundled stylesheet and override CSS
+        variables.
+      </p>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Start with your framework or library</h2>
+        <p class="panel-copy">
+          Start with the section for your framework, then use the
+          references later on this page.
+        </p>
+        <div class="framework-links">
+          <a class="framework-link framework-link--angular" href="#angular">Angular theming</a>
+          <a class="framework-link framework-link--react" href="#react">React theming</a>
+          <a class="framework-link framework-link--vue" href="#vue">Vue theming</a>
+        </div>
+      </section>
+
+      <section class="doc-section" id="angular">
+        <h2 class="doc-h2">Example: Angular with Angular Material</h2>
+        <p class="panel-copy">
+          The component does not become a Material form field, but you can make
+          it match Material spacing and surfaces.
+        </p>
+        <CopyCodeBlock code={angularMaterialCode} lang="ts" ariaLabel="Copy Angular Material recipe" />
+      </section>
+
+      <section class="doc-section" id="react">
+        <h2 class="doc-h2">Example: React with Tailwind or shadcn/ui</h2>
+        <p class="panel-copy">
+          In React, Tailwind and shadcn/ui fit well because the component lets
+          you pass classes to each slot.
+        </p>
+        <CopyCodeBlock code={reactTailwindCode} lang="tsx" ariaLabel="Copy React theming recipe" />
+      </section>
+
+      <section class="doc-section" id="vue">
+        <h2 class="doc-h2">Example: Vue with Vuetify</h2>
+        <p class="panel-copy">
+          Use Vuetify utility classes on the exposed slots to align spacing,
+          elevation, and colors.
+        </p>
+        <CopyCodeBlock code={vueVuetifyCode} lang="vue" ariaLabel="Copy Vue Vuetify recipe" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Inline styles</h2>
+        <p class="panel-copy">
+          Use inline styles when your theme is computed at runtime or comes
+          from JavaScript tokens. The same object shape is used in React, Vue,
+          and Angular.
+        </p>
+        <CopyCodeBlock code={inlineStylesCode} lang="tsx" ariaLabel="Copy inline styles recipe" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Compatibility matrix</h2>
+        <p class="panel-copy">
+          Use this matrix to compare which design systems make sense for each
+          framework package.
+        </p>
+        <div class="glass card--xl">
+          <table class="api-table">
+            <thead>
+              <tr><th>System</th><th>Angular</th><th>React</th><th>Vue</th><th>Recommended API</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Tailwind CSS</td><td>Yes</td><td>Yes</td><td>Yes</td><td><code>unstyled</code> + <code>classNames</code></td></tr>
+              <tr><td>Bootstrap</td><td>Yes</td><td>Yes</td><td>Yes</td><td><code>unstyled</code> + <code>classNames</code></td></tr>
+              <tr><td>Inline styles</td><td>Yes</td><td>Yes</td><td>Yes</td><td><code>unstyled</code> + <code>styles</code></td></tr>
+              <tr><td>shadcn/ui</td><td>No</td><td>Yes</td><td>No</td><td><code>unstyled</code> + <code>classNames</code></td></tr>
+              <tr><td>Angular Material</td><td>Yes</td><td>No</td><td>No</td><td><code>unstyled</code> + host layout classes</td></tr>
+              <tr><td>Vuetify</td><td>No</td><td>No</td><td>Yes</td><td><code>unstyled</code> + <code>classNames</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Available slots</h2>
+        <p class="panel-copy">
+          All framework packages expose the same slot names. In most cases, only
+          the syntax changes between frameworks.
+        </p>
+        <CopyCodeBlock code={slotsCode} lang="ts" ariaLabel="Copy slot names" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">CSS variables</h2>
+        <p class="panel-copy">
+          If you want to keep the default layout and just change colors or
+          radii, CSS variables are the simplest option.
+        </p>
+        <CopyCodeBlock code={cssVarsCode} lang="css" ariaLabel="Copy CSS variables recipe" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">Slot mapping reference</h2>
+        <p class="panel-copy">
+          Use this table when translating a design system into component slots.
+        </p>
+        <div class="glass card--xl">
+          <table class="api-table">
+            <thead>
+              <tr><th>Slot</th><th>What it styles</th><th>Typical design-system mapping</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>root</code></td><td>Outer wrapper</td><td>Width, layout, spacing container</td></tr>
+              <tr><td><code>trigger</code></td><td>Closed field button</td><td>Field chrome, border, padding, radius</td></tr>
+              <tr><td><code>triggerContent</code></td><td>Inner trigger row</td><td>Horizontal alignment and spacing</td></tr>
+              <tr><td><code>placeholder</code></td><td>Empty-state text</td><td>Muted text color</td></tr>
+              <tr><td><code>label</code></td><td>Selected country label</td><td>Text truncation and typography</td></tr>
+              <tr><td><code>chevron</code></td><td>Open/close icon</td><td>Icon color and transitions</td></tr>
+              <tr><td><code>list</code></td><td>Dropdown panel</td><td>Surface, border, shadow, radius</td></tr>
+              <tr><td><code>option</code></td><td>Every option row</td><td>Spacing, cursor, typography</td></tr>
+              <tr><td><code>optionActive</code></td><td>Hovered or active row</td><td>Hover background</td></tr>
+              <tr><td><code>optionSelected</code></td><td>Selected row</td><td>Brand background and foreground</td></tr>
+              <tr><td><code>flag</code></td><td>Flag icon</td><td>Rounded shape or fixed size</td></tr>
+              <tr><td><code>optionName</code></td><td>Country text in list</td><td>Typography and truncation</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .doc-section { margin-bottom: 2.8rem; }
+  .page-title {
+    margin: 0;
+    font-size: var(--text-section);
+    line-height: 0.95;
+    letter-spacing: var(--tracking-tight);
+    font-weight: var(--weight-bold);
+  }
+  .doc-h2 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+    color: var(--text);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .framework-links {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .framework-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.7rem;
+    padding: 0.75rem 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    font-weight: 700;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease,
+      box-shadow 180ms ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+  }
+  .framework-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+  }
+  .framework-link:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+  }
+  .framework-link--angular {
+    border-color: rgba(244, 63, 94, 0.4);
+    color: #ff9cb1;
+  }
+  .framework-link--react {
+    border-color: rgba(97, 218, 251, 0.4);
+    color: #7de3ff;
+  }
+  .framework-link--vue {
+    border-color: rgba(90, 225, 157, 0.4);
+    color: #74e5ac;
+  }
+  .api-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .api-table th {
+    text-align: left;
+    padding: 0.65rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--line);
+    font-weight: var(--weight-bold);
+  }
+  .api-table td {
+    padding: 0.75rem 1rem;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  .api-table tr:last-child td { border-bottom: none; }
+</style>

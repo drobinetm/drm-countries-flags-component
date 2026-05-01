@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout
+  title="@drobinetm/countries-flags"
+  description="Accessible country selector component with flag icons for Angular 17+, React 18+ and Vue 3."
+  currentPath="/"
+>
+  <!-- ─── HERO ─────────────────────────────────────────────── -->
+  <section class="section landing-section hero-section landing-section--hero">
+    <div class="shell hero-grid">
+      <!-- Left: copy -->
+      <div class="hero-copy">
+        <p class="eyebrow" data-aos="fade-right" data-aos-duration="1000">Open source country selector</p>
+        <h1 class="headline" data-aos="fade-up" data-aos-delay="80" data-aos-duration="1200">
+          Countries&nbsp;&amp;<br/>
+          <span style="background: linear-gradient(90deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            Flags
+          </span><br/>
+          Selector
+        </h1>
+        <p class="subhead" style="margin-top: 1.4rem;" data-aos="fade-up" data-aos-delay="160" data-aos-duration="1200">
+          The same country selector for Angular, React, and Vue. Supports
+          <code>v-model</code>, <code>ngModel</code>, and <code>onChange</code>.
+        </p>
+
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="240" data-aos-duration="1200">
+          <a href="/docs/angular" class="button button--primary">Get started</a>
+          <a href="/docs/theming" class="button button--ghost">Styling examples</a>
+          <a href="https://github.com/drobinetm/drm-countries-flags-component"
+             class="button button--ghost" target="_blank" rel="noopener noreferrer">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: install card -->
+      <div style="display:flex; flex-direction: column; gap: var(--gap);">
+        <div class="glass card--xl install-preview" data-aos="zoom-in-up" data-aos-delay="220" data-aos-duration="1350">
+          <p class="eyebrow" style="margin-bottom:0.7rem; font-size: 0.72rem;">Quick install</p>
+
+          <div style="display:flex; flex-direction: column; gap: 0.7rem;">
+            <!-- Angular -->
+            <div>
+              <p class="badge badge--angular" style="margin-bottom: 0.4rem;">Angular</p>
+              <pre><code>pnpm add @drobinetm/angular-countries-flags</code></pre>
+            </div>
+            <!-- React -->
+            <div>
+              <p class="badge badge--react" style="margin-bottom: 0.4rem;">React</p>
+              <pre><code>pnpm add @drobinetm/react-countries-flags</code></pre>
+            </div>
+            <!-- Vue -->
+            <div>
+              <p class="badge badge--vue" style="margin-bottom: 0.4rem;">Vue</p>
+              <pre><code>pnpm add @drobinetm/vue-countries-flags</code></pre>
+            </div>
+          </div>
+
+          <p style="margin: 1rem 0 0; color: var(--text-muted); font-size: 0.82rem;">
+            Also requires <code>flag-icons</code> as peer dependency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEATURES ──────────────────────────────────────────── -->
+  <section class="section landing-section" id="features">
+    <div class="shell">
+        <p class="eyebrow">Why use it</p>
+        <h2 style="margin: 0 0 2.4rem; font-size: var(--text-section); line-height: 0.95; letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);">
+          What it includes
+        </h2>
+
+      <div class="feature-grid">
+        <!-- Feature cards -->
+        <article class="glass card" data-aos="fade-up" data-aos-delay="40" data-aos-duration="1000">
+          <div class="feature-icon" aria-hidden="true">🎯</div>
+          <h3 class="panel-title" style="margin-top: 0.8rem;">Fully controlled API</h3>
+          <p class="panel-copy">
+            Works with <code>v-model</code>, <code>[(ngModel)]</code>,
+            <code>formControl</code>, and <code>onChange</code>.
+          </p>
+        </article>
+
+        <article class="glass card" data-aos="fade-up" data-aos-delay="120" data-aos-duration="1000">
+          <div class="feature-icon" aria-hidden="true">♿</div>
+          <h3 class="panel-title" style="margin-top: 0.8rem;">Accessible</h3>
+          <p class="panel-copy">
+            Includes keyboard support, ARIA <code>listbox</code> roles,
+            <code>aria-selected</code>, <code>aria-expanded</code>, and focus handling.
+          </p>
+        </article>
+
+        <article class="glass card" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+          <div class="feature-icon" aria-hidden="true">🎌</div>
+          <h3 class="panel-title" style="margin-top: 0.8rem;">250+ country flags</h3>
+          <p class="panel-copy">
+            Includes ISO 3166-1 alpha-2 countries from <code>country-list</code>
+            and <code>flag-icons</code>. Filter the list or limit the count.
+          </p>
+        </article>
+
+        <article class="glass card" data-aos="fade-up" data-aos-delay="80" data-aos-duration="1000">
+          <div class="feature-icon" aria-hidden="true">🔷</div>
+          <h3 class="panel-title" style="margin-top: 0.8rem;">Typed API</h3>
+          <p class="panel-copy">
+            Full type exports: <code>Country</code>, <code>CountriesFlagsProps</code>,
+            <code>CountryChangeEvent</code>. Shared from <code>@drobinetm/countries-flags-core</code>.
+          </p>
+        </article>
+
+        <article class="glass card" data-aos="fade-up" data-aos-delay="160" data-aos-duration="1000">
+          <div class="feature-icon" aria-hidden="true">🎨</div>
+          <h3 class="panel-title" style="margin-top: 0.8rem;">Easy to style</h3>
+          <p class="panel-copy">
+            Override visual tokens with CSS variables like
+            <code>--drm-cf-bg</code>, <code>--drm-cf-radius</code>, and
+            <code>--drm-cf-focus</code>.
+          </p>
+        </article>
+
+        <article class="glass card" data-aos="fade-up" data-aos-delay="240" data-aos-duration="1000">
+          <div class="feature-icon" aria-hidden="true">📦</div>
+          <h3 class="panel-title" style="margin-top: 0.8rem;">Shared core package</h3>
+          <p class="panel-copy">
+            <code>@drobinetm/countries-flags-core</code> provides the shared
+            data, types, and utilities used by all three implementations.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FRAMEWORK CARDS ───────────────────────────────────── -->
+  <section class="section landing-section" id="frameworks">
+    <div class="shell">
+      <p class="eyebrow">Implementations</p>
+        <h2 style="margin: 0 0 2.4rem; font-size: var(--text-section); line-height: 0.95; letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);">
+          Pick your implementation
+        </h2>
+
+      <div class="framework-grid">
+        <!-- Angular -->
+        <article class="glass card--xl fw-card fw-card--angular" data-aos="zoom-in-up" data-aos-delay="40" data-aos-duration="1150">
+          <div class="fw-card__header">
+            <span style="font-size: 2.4rem;" aria-hidden="true">🔴</span>
+            <span class="badge badge--angular">Angular 17+</span>
+          </div>
+          <h3 class="panel-title" style="margin-top: 1rem;">@drobinetm/<wbr/>angular-countries-flags</h3>
+          <p class="panel-copy">
+            Standalone component with <code>ControlValueAccessor</code>.
+            Works with template-driven and reactive forms.
+          </p>
+          <div style="margin-top: 1.4rem;">
+            <pre><code>&lt;drm-countries-flags
+  [(ngModel)]="code"
+  [filter]="['es','us']"
+/&gt;</code></pre>
+          </div>
+          <div style="display: grid; gap: 0.75rem; margin-top: 1.2rem;">
+            <a href="/docs/angular" class="button button--ghost" style="width: 100%;">
+              Angular docs →
+            </a>
+          </div>
+        </article>
+
+        <!-- React -->
+        <article class="glass card--xl fw-card fw-card--react" data-aos="zoom-in-up" data-aos-delay="140" data-aos-duration="1150">
+          <div class="fw-card__header">
+            <span style="font-size: 2.4rem;" aria-hidden="true">🔵</span>
+            <span class="badge badge--react">React 18+</span>
+          </div>
+          <h3 class="panel-title" style="margin-top: 1rem;">@drobinetm/<wbr/>react-countries-flags</h3>
+          <p class="panel-copy">
+            Controlled component with <code>onChange</code>,
+            <code>forwardRef</code>, and typed props.
+          </p>
+          <div style="margin-top: 1.4rem;">
+            <pre><code>&lt;CountriesFlags
+  value=&#123;code&#125;
+  onChange=&#123;(e) =&gt; setCode(e.code)&#125;
+  filter=&#123;['es','us']&#125;
+/&gt;</code></pre>
+          </div>
+          <div style="display: grid; gap: 0.75rem; margin-top: 1.2rem;">
+            <a href="/docs/react" class="button button--ghost" style="width: 100%;">
+              React docs →
+            </a>
+          </div>
+        </article>
+
+        <!-- Vue -->
+        <article class="glass card--xl fw-card fw-card--vue" data-aos="zoom-in-up" data-aos-delay="240" data-aos-duration="1150">
+          <div class="fw-card__header">
+            <span style="font-size: 2.4rem;" aria-hidden="true">🟢</span>
+            <span class="badge badge--vue">Vue 3</span>
+          </div>
+          <h3 class="panel-title" style="margin-top: 1rem;">@drobinetm/<wbr/>vue-countries-flags</h3>
+          <p class="panel-copy">
+            Vue 3 component with <code>&lt;script setup&gt;</code>,
+            <code>v-model</code>, and a <code>@change</code> event.
+          </p>
+          <div style="margin-top: 1.4rem;">
+            <pre><code>&lt;CountriesFlags
+  v-model="code"
+  :filter="['es','us']"
+  @change="onSelect"
+/&gt;</code></pre>
+          </div>
+          <div style="display: grid; gap: 0.75rem; margin-top: 1.2rem;">
+            <a href="/docs/vue" class="button button--ghost" style="width: 100%;">
+              Vue docs →
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── API REFERENCE ─────────────────────────────────────── -->
+  <section class="section landing-section" id="api">
+    <div class="shell">
+      <p class="eyebrow">API Reference</p>
+        <h2 style="margin: 0 0 2.4rem; font-size: var(--text-section); line-height: 0.95; letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);">
+          Shared API across implementations
+        </h2>
+
+      <div class="glass card--xl" data-aos="fade-up" data-aos-duration="1100">
+        <div style="overflow-x: auto;">
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th>Prop / Input</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>max</code></td>
+                <td><code>number</code></td>
+                <td><code>0</code></td>
+                <td>Max countries shown. <code>0</code> = unlimited.</td>
+              </tr>
+              <tr>
+                <td><code>filter</code></td>
+                <td><code>string[]</code></td>
+                <td><code>[]</code></td>
+                <td>ISO alpha-2 code whitelist. Empty = show all.</td>
+              </tr>
+              <tr>
+                <td><code>value</code> / <code>ngModel</code> / <code>v-model</code></td>
+                <td><code>string | null</code></td>
+                <td><code>null</code></td>
+                <td>Currently selected country code (controlled).</td>
+              </tr>
+              <tr>
+                <td><code>placeholder</code></td>
+                <td><code>string</code></td>
+                <td><code>"Select a country"</code></td>
+                <td>Trigger text when no country is selected.</td>
+              </tr>
+              <tr>
+                <td><code>disabled</code></td>
+                <td><code>boolean</code></td>
+                <td><code>false</code></td>
+                <td>Disables user interaction.</td>
+              </tr>
+              <tr>
+                <td><code>onChange</code> / <code>(valueChange)</code> / <code>@change</code></td>
+                <td><code>CountryChangeEvent</code></td>
+                <td>—</td>
+                <td>Emits <code>&#123; country, code &#125;</code> on selection.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CSS CUSTOMIZATION ─────────────────────────────────── -->
+  <section class="section landing-section" id="theming">
+    <div class="shell install-grid">
+      <div data-aos="fade-up" data-aos-duration="1050">
+        <p class="eyebrow">Theming</p>
+        <h2 style="margin: 0 0 1rem; font-size: var(--text-section); line-height: 0.95; letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);">
+          Styling
+        </h2>
+        <p class="panel-copy" style="max-width: 48ch;">
+          Use CSS variables to adjust the default look. You can override them on
+          the host element or globally.
+        </p>
+      </div>
+
+      <div class="glass card--xl" data-aos="zoom-in-up" data-aos-delay="120" data-aos-duration="1150">
+        <p class="eyebrow" style="font-size: 0.72rem; margin-bottom: 0.6rem;">CSS variables</p>
+        <pre><code>drm-countries-flags, .drm-cf &#123;
+  --drm-cf-bg: rgba(10, 18, 34, 0.76);
+  --drm-cf-border: rgba(255,255,255, 0.08);
+  --drm-cf-border-hover: rgba(115,190,255, 0.24);
+  --drm-cf-focus: #0f6dff;
+  --drm-cf-radius: 14px;
+  --drm-cf-text: #f7f9ff;
+  --drm-cf-placeholder: rgba(196,209,236, 0.56);
+  --drm-cf-dropdown-bg: rgba(7,14,28, 0.96);
+  --drm-cf-accent: #8ad9ff;
+&#125;</code></pre>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .landing-section {
+    position: relative;
+    padding-top: clamp(1.45rem, 2.6vw, 2.5rem);
+    padding-bottom: clamp(1.45rem, 2.6vw, 2.5rem);
+  }
+
+  .landing-section + .landing-section {
+    margin-top: clamp(3rem, 5vw, 5.5rem);
+    padding-top: clamp(1.2rem, 2vw, 1.9rem);
+  }
+
+  .hero-section {
+    padding-top: clamp(2.4rem, 4vw, 4.2rem);
+    padding-bottom: clamp(2.6rem, 4.2vw, 4rem);
+  }
+
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.4rem;
+    flex-wrap: wrap;
+  }
+
+  .install-preview {
+    padding: 1.6rem;
+  }
+
+  .install-preview pre {
+    margin: 0;
+    font-size: 0.82rem;
+  }
+
+  .feature-icon {
+    font-size: 1.8rem;
+  }
+
+  .fw-card__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .fw-card pre {
+    font-size: 0.82rem;
+  }
+
+  .fw-card--angular {
+    border-top: 2px solid rgba(221, 0, 49, 0.3);
+  }
+
+  .fw-card--react {
+    border-top: 2px solid rgba(97, 218, 251, 0.3);
+  }
+
+  .fw-card--vue {
+    border-top: 2px solid rgba(65, 184, 131, 0.3);
+  }
+
+  .landing-demo-banner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.05rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 35, 87, 0.95);
+    background: rgba(11, 20, 38, 0.92);
+  }
+
+  .landing-demo-banner--react {
+    border-color: rgba(89, 213, 255, 0.95);
+  }
+
+  .landing-demo-banner--vue {
+    border-color: rgba(65, 211, 146, 0.95);
+  }
+
+  .landing-demo-banner__icon {
+    color: rgba(255, 35, 87, 1);
+    font-size: 1.2rem;
+  }
+
+  .landing-demo-banner--react .landing-demo-banner__icon {
+    color: rgba(89, 213, 255, 1);
+  }
+
+  .landing-demo-banner--vue .landing-demo-banner__icon {
+    color: rgba(65, 211, 146, 1);
+  }
+
+  .landing-demo-banner__copy {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .landing-demo-banner__copy strong {
+    color: rgba(255, 35, 87, 1);
+    font-size: 1.05rem;
+  }
+
+  .landing-demo-banner--react .landing-demo-banner__copy strong {
+    color: rgba(89, 213, 255, 1);
+  }
+
+  .landing-demo-banner--vue .landing-demo-banner__copy strong {
+    color: rgba(65, 211, 146, 1);
+  }
+
+  .landing-demo-banner__copy span {
+    color: rgba(196, 209, 236, 0.52);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .landing-demo-banner__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.65rem;
+    padding: 0.7rem 1rem;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .landing-demo-banner__cta--angular {
+    background: rgba(38, 49, 73, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(201, 211, 230, 0.48);
+  }
+
+  .landing-demo-banner__cta--react {
+    background: linear-gradient(180deg, #73e0ff 0%, #59d5ff 100%);
+    border: 1px solid rgba(97, 218, 251, 0.4);
+    color: #07273d;
+  }
+
+  .landing-demo-banner__cta--vue {
+    background: linear-gradient(180deg, #5ae0a0 0%, #46c987 100%);
+    border: 1px solid rgba(90, 225, 157, 0.4);
+    color: #08291a;
+  }
+
+  /* API table */
+  .api-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .api-table th {
+    text-align: left;
+    padding: 0.65rem 1rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--line);
+    font-weight: var(--weight-bold);
+  }
+
+  .api-table td {
+    padding: 0.75rem 1rem;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  .api-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .api-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  @media (max-width: 860px) {
+    .hero-actions {
+      gap: 0.8rem;
+    }
+
+    .landing-demo-banner {
+      grid-template-columns: 1fr;
+      justify-items: start;
+    }
+  }
+</style>

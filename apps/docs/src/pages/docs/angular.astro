@@ -1,0 +1,336 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import TryLiveBanner from '../../components/TryLiveBanner.astro'
+import CopyCodeBlock from '../../components/CopyCodeBlock.astro'
+
+const installCode = `pnpm add @drobinetm/angular-countries-flags flag-icons`
+
+const stylesImportCode = `/* styles.css or angular.json styles[] */
+@import 'flag-icons/css/flag-icons.min.css';`
+
+const basicUsageCode = [
+  '// app.component.ts',
+  "import { Component } from '@angular/core'",
+  "import { CountriesFlagsComponent } from '@drobinetm/angular-countries-flags'",
+  "import { FormsModule } from '@angular/forms'",
+  '',
+  '@Component({',
+  "  selector: 'app-root',",
+  '  standalone: true,',
+  '  imports: [CountriesFlagsComponent, FormsModule],',
+  '  template: `',
+  '    <drm-countries-flags',
+  '      [(ngModel)]="selectedCode"',
+  '      placeholder="Select a country"',
+  '    />',
+  '    <p>Selected: {{ selectedCode }}</p>',
+  '  `,',
+  '})',
+  'export class AppComponent {',
+  '  selectedCode: string | null = null',
+  '}',
+].join('\n')
+
+const reactiveFormsCode = [
+  "import { Component } from '@angular/core'",
+  "import { FormControl, ReactiveFormsModule } from '@angular/forms'",
+  "import { CountriesFlagsComponent } from '@drobinetm/angular-countries-flags'",
+  '',
+  '@Component({',
+  '  standalone: true,',
+  '  imports: [CountriesFlagsComponent, ReactiveFormsModule],',
+  '  template: `',
+  '    <drm-countries-flags [formControl]="countryControl" />',
+  '  `,',
+  '})',
+  'export class MyComponent {',
+  '  countryControl = new FormControl<string | null>(null)',
+  '}',
+].join('\n')
+
+const filterCode = `<drm-countries-flags
+  [(ngModel)]="code"
+  [filter]="['es', 'us', 'br', 'ar', 'mx', 'co']"
+  [max]="20"
+  placeholder="Latin America + US + Spain"
+/>`
+
+const changeEventCode = `import { CountryChangeEvent } from '@drobinetm/angular-countries-flags'
+
+<drm-countries-flags
+  [(ngModel)]="code"
+  (valueChange)="onCountryChange($event)"
+/>
+
+onCountryChange(event: CountryChangeEvent) {
+  console.log(event.code)    // 'es'
+  console.log(event.country) // { code: 'es', name: 'Spain' }
+}`
+
+const tailwindCode = `<drm-countries-flags
+  [(ngModel)]="selectedCode"
+  [unstyled]="true"
+  [classNames]="{
+    root: 'w-full',
+    trigger:
+      'flex h-11 w-full items-center justify-between rounded-xl border border-slate-300 bg-white px-3 text-left text-slate-900 shadow-sm transition focus:outline-none focus:ring-2 focus:ring-sky-500',
+    triggerContent: 'flex min-w-0 items-center gap-2',
+    placeholder: 'text-slate-400',
+    label: 'truncate',
+    list: 'mt-2 max-h-64 overflow-auto rounded-xl border border-slate-200 bg-white p-1 shadow-2xl',
+    option: 'flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 text-sm',
+    optionActive: 'bg-slate-100',
+    optionSelected: 'bg-sky-600 text-white',
+    optionName: 'truncate'
+  }"
+  [styles]="{
+    flag: { borderRadius: '9999px' }
+  }"
+></drm-countries-flags>`
+
+const bootstrapCode = `<drm-countries-flags
+  [(ngModel)]="selectedCode"
+  [unstyled]="true"
+  [classNames]="{
+    root: 'w-100',
+    trigger: 'btn btn-outline-secondary w-100 d-flex align-items-center justify-content-between rounded-3 px-3 py-2',
+    triggerContent: 'd-flex align-items-center gap-2 text-truncate',
+    placeholder: 'text-secondary',
+    list: 'mt-2 list-unstyled border rounded-3 bg-body shadow-lg p-1',
+    option: 'd-flex align-items-center gap-2 rounded-3 px-3 py-2',
+    optionActive: 'bg-light',
+    optionSelected: 'bg-primary text-white',
+    optionName: 'text-truncate'
+  }"
+  [styles]="{
+    root: { minWidth: '280px' },
+    flag: { borderRadius: '50%' }
+  }"
+></drm-countries-flags>`
+
+const materialCode = [
+  '// app.component.ts',
+  "import { Component } from '@angular/core'",
+  "import { FormsModule } from '@angular/forms'",
+  "import { MatCardModule } from '@angular/material/card'",
+  "import { CountriesFlagsComponent } from '@drobinetm/angular-countries-flags'",
+  '',
+  '@Component({',
+  '  standalone: true,',
+  '  imports: [FormsModule, MatCardModule, CountriesFlagsComponent],',
+  '  template: `',
+  '    <mat-card appearance="outlined">',
+  '      <mat-card-content>',
+  '        <drm-countries-flags',
+  '          [(ngModel)]="selectedCode"',
+  '          [unstyled]="true"',
+  '          [classNames]="{',
+  "            root: 'w-full',",
+  "            trigger: 'mat-mdc-button-base w-full d-flex align-items-center justify-content-between px-3 py-3 rounded-4 border',",
+  "            triggerContent: 'd-flex align-items-center gap-2 text-truncate',",
+  "            placeholder: 'mat-body-medium text-medium-emphasis',",
+  "            list: 'mt-2 rounded-4 border bg-surface p-1 mat-elevation-z8',",
+  "            option: 'd-flex align-items-center gap-2 rounded-3 px-3 py-2',",
+  "            optionActive: 'bg-light',",
+  "            optionSelected: 'bg-primary text-white'",
+  '          }"',
+  '          [styles]="{',
+  "            flag: { borderRadius: '9999px' }",
+  '          }"',
+  '        ></drm-countries-flags>',
+  '      </mat-card-content>',
+  '    </mat-card>',
+  '  `,',
+  '})',
+  'export class AppComponent {',
+  '  selectedCode: string | null = null',
+  '}',
+].join('\n')
+
+const inlineStylesCode = `<drm-countries-flags
+  [(ngModel)]="selectedCode"
+  [unstyled]="true"
+  [styles]="{
+    root: { width: '100%', minWidth: '280px' },
+    trigger: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      width: '100%',
+      minHeight: '44px',
+      padding: '0 14px',
+      border: '1px solid #d4d4d8',
+      borderRadius: '16px',
+      backgroundColor: '#ffffff',
+      color: '#111827'
+    },
+    triggerContent: { display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0 },
+    placeholder: { color: '#6b7280' },
+    list: {
+      marginTop: '8px',
+      padding: '6px',
+      listStyle: 'none',
+      border: '1px solid #e5e7eb',
+      borderRadius: '16px',
+      backgroundColor: '#ffffff',
+      boxShadow: '0 24px 48px rgba(15, 23, 42, 0.18)'
+    },
+    option: { display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 12px', borderRadius: '12px' },
+    optionActive: { backgroundColor: '#f3f4f6' },
+    optionSelected: { backgroundColor: '#2563eb', color: '#ffffff' },
+    flag: { borderRadius: '9999px' }
+  }"
+></drm-countries-flags>`
+---
+
+<BaseLayout
+  title="Angular — Docs"
+  description="Angular 17+ standalone component for country selection with flag icons. Supports ngModel, formControl and reactive forms."
+  currentPath="/docs/angular"
+>
+  <div class="shell" style="padding: 3rem 0 5rem;">
+    <div style="max-width: 820px;">
+
+      <!-- Header -->
+      <p class="eyebrow">Implementation</p>
+      <h1 style="margin: 0 0 0.5rem; font-size: var(--text-section); line-height: 0.95; letter-spacing: var(--tracking-tight); font-weight: var(--weight-bold);">
+        <span class="badge badge--angular" style="font-size: 1rem; margin-right: 0.6rem; vertical-align: middle;">Angular 17+</span>
+        <br/>angular-countries-flags
+      </h1>
+        <p class="subhead" style="margin: 1rem 0 2.4rem;">
+          Standalone component with <code>ControlValueAccessor</code> support
+          for template-driven and reactive forms.
+        </p>
+        <div style="margin: 0 0 2.4rem;">
+          <TryLiveBanner
+            variant="angular"
+            href="/demos/angular"
+            title="Try it live"
+            description="Open the Angular demo page to try the component."
+            buttonLabel="Open Angular demo"
+          />
+        </div>
+        <div style="margin: 0 0 2.4rem;">
+          <TryLiveBanner
+            variant="angular"
+            href="/docs/theming#angular"
+            title="Styling examples"
+            description="Go to the Angular styling section for Tailwind, Bootstrap, Angular Material, inline styles, and the slot map."
+            buttonLabel="Open Angular styling"
+          />
+        </div>
+
+      <!-- Install -->
+      <section class="doc-section">
+        <h2 class="doc-h2">Installation</h2>
+        <CopyCodeBlock code={installCode} lang="bash" ariaLabel="Copy Angular install command" />
+        <p class="panel-copy" style="margin-top: 0.8rem;">
+          Load <code>flag-icons</code> in your <code>angular.json</code> styles array
+          or import it in your global stylesheet:
+        </p>
+        <CopyCodeBlock code={stylesImportCode} lang="css" ariaLabel="Copy Angular styles import" />
+      </section>
+
+      <!-- Basic usage -->
+      <section class="doc-section">
+        <h2 class="doc-h2">Basic usage</h2>
+        <p class="panel-copy">Import the standalone component and use it:</p>
+        <CopyCodeBlock code={basicUsageCode} lang="ts" ariaLabel="Copy Angular basic usage" />
+      </section>
+
+      <!-- Reactive forms -->
+      <section class="doc-section">
+        <h2 class="doc-h2">Reactive forms</h2>
+        <p class="panel-copy">
+          The component implements <code>ControlValueAccessor</code>, so it
+          works with reactive forms.
+        </p>
+        <CopyCodeBlock code={reactiveFormsCode} lang="ts" ariaLabel="Copy Angular reactive forms example" />
+      </section>
+
+      <!-- Filter and max -->
+      <section class="doc-section">
+        <h2 class="doc-h2">Filter &amp; limit countries</h2>
+        <CopyCodeBlock code={filterCode} lang="html" ariaLabel="Copy Angular filter example" />
+      </section>
+
+      <!-- Change event -->
+      <section class="doc-section">
+        <h2 class="doc-h2">Change event</h2>
+        <CopyCodeBlock code={changeEventCode} lang="ts" ariaLabel="Copy Angular change event example" />
+      </section>
+
+      <section class="doc-section">
+        <h2 class="doc-h2">CSS integrations</h2>
+        <p class="panel-copy">
+          In Angular, you can style the component with utility classes, CSS
+          frameworks, or inline style objects. The examples below are
+          Angular-specific.
+        </p>
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          Tailwind works well in Angular when you disable the bundled styles
+          with <code>unstyled</code>.
+        </p>
+        <CopyCodeBlock code={tailwindCode} lang="html" ariaLabel="Copy Angular Tailwind example" />
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          You can also use Bootstrap utilities through the exposed slot classes.
+        </p>
+        <CopyCodeBlock code={bootstrapCode} lang="html" ariaLabel="Copy Angular Bootstrap example" />
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          The component is not a native Angular Material form field, but you
+          can match it to Material layouts and surfaces.
+        </p>
+        <CopyCodeBlock code={materialCode} lang="ts" ariaLabel="Copy Angular Material example" />
+
+        <p class="panel-copy" style="margin-top: 1rem;">
+          If your project computes styles in TypeScript, bind them with the
+          <code>styles</code> input.
+        </p>
+        <CopyCodeBlock code={inlineStylesCode} lang="html" ariaLabel="Copy Angular inline styles example" />
+      </section>
+
+      <!-- Props table -->
+      <section class="doc-section">
+        <h2 class="doc-h2">Props / Inputs</h2>
+        <div class="glass card--xl">
+          <table class="api-table">
+            <thead>
+              <tr><th>Input</th><th>Type</th><th>Default</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>max</code></td><td><code>number</code></td><td><code>0</code></td><td>Max countries shown. 0 = unlimited.</td></tr>
+              <tr><td><code>filter</code></td><td><code>string[]</code></td><td><code>[]</code></td><td>ISO alpha-2 whitelist. Empty = all.</td></tr>
+              <tr><td><code>placeholder</code></td><td><code>string</code></td><td><code>"Select a country"</code></td><td>Trigger placeholder text.</td></tr>
+              <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the component.</td></tr>
+              <tr><td><code>unstyled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Turns off the bundled UI styles.</td></tr>
+              <tr><td><code>classNames</code></td><td><code>CountriesFlagsClassNames</code></td><td><code>&#123;&#125;</code></td><td>Classes by component slot.</td></tr>
+              <tr><td><code>styles</code></td><td><code>CountriesFlagsStyles</code></td><td><code>&#123;&#125;</code></td><td>Inline styles by component slot.</td></tr>
+              <tr><td><code>(valueChange)</code></td><td><code>CountryChangeEvent</code></td><td>—</td><td>Emits <code>&#123; country, code &#125;</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .doc-section { margin-bottom: 2.8rem; }
+  .doc-h2 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+    color: var(--text);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .api-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .api-table th { text-align: left; padding: 0.65rem 1rem; color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--line); font-weight: var(--weight-bold); }
+  .api-table td { padding: 0.75rem 1rem; color: var(--text-soft); border-bottom: 1px solid var(--line); vertical-align: top; }
+  .api-table tr:last-child td { border-bottom: none; }
+</style>

@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import CopyCodeBlock from '../../components/CopyCodeBlock.astro'
+import VueDemoIsland from '../../components/vue/VueDemoIsland.vue'
+import 'flag-icons/css/flag-icons.min.css'
+import '@drobinetm/vue-countries-flags/styles'
+import '../../styles/framework-runtime-demo.css'
+
+const runCode = `pnpm install
+pnpm dev:vue`
+
+const componentCode = `<CountriesFlags
+  v-model="selectedCode"
+  :filter="['es', 'br', 'ar', 'uy', 'us', 'gb']"
+  :max="4"
+  @change="handleCountryChange"
+/>`
+---
+
+<BaseLayout
+  title="Vue demo"
+  description="Vue demo page for the countries flags component."
+  currentPath="/demos/vue"
+>
+  <link rel="stylesheet" href="/angular-demo/styles.css" />
+
+  <section class="section framework-demo framework-demo--vue">
+    <div class="shell framework-demo__shell">
+      <header class="framework-demo__header">
+        <p class="eyebrow">Vue demo</p>
+        <h1 class="framework-demo__title">Vue demo</h1>
+        <p class="framework-demo__lead">
+          Demo page for the Vue component.
+        </p>
+      </header>
+
+      <section class="framework-demo__runtime-block">
+        <div class="framework-demo__runtime-header">
+          <p class="framework-demo__panel-kicker">Live demo</p>
+          <h2 class="framework-demo__panel-title">Interactive preview</h2>
+        </div>
+        <section class="framework-demo__runtime">
+          <div class="framework-demo__runtime-mount">
+            <VueDemoIsland client:load />
+          </div>
+        </section>
+      </section>
+
+      <div class="framework-demo__grid">
+        <section class="glass card--xl framework-demo__panel">
+          <p class="framework-demo__panel-kicker">Local run</p>
+          <h2 class="framework-demo__panel-title">Run the workspace demo</h2>
+          <p class="panel-copy">
+            Run the Vue demo locally from the workspace.
+          </p>
+          <CopyCodeBlock code={runCode} ariaLabel="Copy Vue demo commands" />
+        </section>
+
+        <section class="glass card--xl framework-demo__panel">
+          <p class="framework-demo__panel-kicker">Reference snippet</p>
+          <h2 class="framework-demo__panel-title">Example snippet</h2>
+          <p class="panel-copy">
+            This is the example used on the demo page.
+          </p>
+          <CopyCodeBlock code={componentCode} ariaLabel="Copy Vue component snippet" />
+        </section>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .framework-demo__shell {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .framework-demo__header {
+    max-width: 56rem;
+  }
+
+  .framework-demo__title {
+    margin: 0;
+    font-size: clamp(2.7rem, 6vw, 4.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+  }
+
+  .framework-demo__lead {
+    margin: 1rem 0 0;
+    max-width: 54rem;
+    color: var(--text-soft);
+    font-size: 1.08rem;
+    line-height: 1.68;
+  }
+
+  .framework-demo__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+  }
+
+  .framework-demo__panel {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .framework-demo__panel-kicker {
+    margin: 0;
+    color: var(--vue-green);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .framework-demo__panel-title {
+    margin: 0;
+    font-size: 1.85rem;
+    line-height: 1;
+  }
+
+  .framework-demo__runtime {
+    margin-top: 0.2rem;
+    padding: 0;
+  }
+
+  .framework-demo__runtime-mount {
+    padding: 0;
+  }
+
+  .framework-demo__runtime-block {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .framework-demo__runtime-header {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  @media (max-width: 860px) {
+    .framework-demo__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
