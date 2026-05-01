@@ -142,8 +142,8 @@ const cssVarsCode = `.drm-cf {
   description="Styling examples for Angular, React, and Vue with Tailwind, Bootstrap, Angular Material, Vuetify, and inline styles."
   currentPath="/docs/theming"
 >
-  <div class="shell" style="padding: 3rem 0 5rem;">
-    <div style="max-width: 960px;">
+  <div class="shell doc-page">
+    <div class="doc-page__content">
       <p class="eyebrow">Theming</p>
       <h1 class="page-title">Styling examples</h1>
       <p class="subhead" style="margin: 1rem 0 2rem; max-width: 60rem;">
@@ -210,7 +210,8 @@ const cssVarsCode = `.drm-cf {
           framework package.
         </p>
         <div class="glass card--xl">
-          <table class="api-table">
+          <div class="doc-table-wrap">
+            <table class="api-table">
             <thead>
               <tr><th>System</th><th>Angular</th><th>React</th><th>Vue</th><th>Recommended API</th></tr>
             </thead>
@@ -222,7 +223,8 @@ const cssVarsCode = `.drm-cf {
               <tr><td>Angular Material</td><td>Yes</td><td>No</td><td>No</td><td><code>unstyled</code> + host layout classes</td></tr>
               <tr><td>Vuetify</td><td>No</td><td>No</td><td>Yes</td><td><code>unstyled</code> + <code>classNames</code></td></tr>
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -250,7 +252,8 @@ const cssVarsCode = `.drm-cf {
           Use this table when translating a design system into component slots.
         </p>
         <div class="glass card--xl">
-          <table class="api-table">
+          <div class="doc-table-wrap">
+            <table class="api-table">
             <thead>
               <tr><th>Slot</th><th>What it styles</th><th>Typical design-system mapping</th></tr>
             </thead>
@@ -268,7 +271,8 @@ const cssVarsCode = `.drm-cf {
               <tr><td><code>flag</code></td><td>Flag icon</td><td>Rounded shape or fixed size</td></tr>
               <tr><td><code>optionName</code></td><td>Country text in list</td><td>Typography and truncation</td></tr>
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </section>
     </div>
@@ -338,22 +342,22 @@ const cssVarsCode = `.drm-cf {
     border-color: rgba(90, 225, 157, 0.4);
     color: #74e5ac;
   }
-  .api-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-  .api-table th {
-    text-align: left;
-    padding: 0.65rem 1rem;
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid var(--line);
-    font-weight: var(--weight-bold);
+  @media (max-width: 640px) {
+    .doc-section {
+      margin-bottom: 2.2rem;
+    }
+
+    .doc-h2 {
+      font-size: 1.3rem;
+    }
+
+    .framework-links {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .framework-link {
+      width: 100%;
+    }
   }
-  .api-table td {
-    padding: 0.75rem 1rem;
-    color: var(--text-soft);
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
-  }
-  .api-table tr:last-child td { border-bottom: none; }
 </style>

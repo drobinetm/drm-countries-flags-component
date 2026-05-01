@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
+import { fileURLToPath, URL } from 'node:url'
 
 export default defineConfig({
   plugins: [
     vue(),
     dts({ insertTypesEntry: true, rollupTypes: true, tsconfigPath: './tsconfig.json' }),
   ],
+  resolve: {
+    alias: {
+      '@drobinetm/countries-flags-core': fileURLToPath(
+        new URL('../core/src/index.ts', import.meta.url),
+      ),
+    },
+  },
   build: {
     lib: {
       entry: './src/index.ts',
@@ -15,7 +23,7 @@ export default defineConfig({
       fileName: (format) => `index.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
-      external: ['vue', '@drobinetm/countries-flags-core'],
+      external: ['vue'],
       output: {
         globals: { vue: 'Vue' },
         assetFileNames: (assetInfo) => {

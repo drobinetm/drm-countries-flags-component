@@ -50,18 +50,18 @@ const wallets = [
   description="Funding options for @drobinetm/countries-flags, including GitHub Sponsors and crypto wallets."
   currentPath="/support"
 >
-  <section class="section" style="padding-top: 4.6rem; padding-bottom: 5rem;">
-    <div class="shell" style="display:grid; gap:1.2rem;">
+  <section class="section support-page">
+    <div class="shell support-shell">
       <div class="support-hero">
         <div class="eyebrow">Support the work</div>
         <h1 class="headline" style="max-width: 12ch;">Support the project.</h1>
         <p class="subhead">If <code>@drobinetm/countries-flags</code> is useful for your team, support helps cover maintenance, documentation, fixes, and new examples.</p>
       </div>
 
-      <div class="support-grid" style="gap:1rem;">
+      <div class="support-grid">
         <div class="glass card support-panel">
           <div class="eyebrow">Platforms</div>
-          <div style="display:grid; gap:0.9rem;">
+          <div class="support-options">
             {sponsorOptions.map((option) => (
               <div class="glass card support-option">
                 <strong class="support-option__title">{option.label}</strong>
@@ -78,7 +78,7 @@ const wallets = [
         <div class="glass card support-panel">
           <div class="eyebrow">Crypto wallets</div>
           <p class="panel-copy" style="margin-top:0;">If you want to support the project with a direct on-chain contribution, use the wallet that matches the network shown on each card. Before sending funds, double-check both the network and the address so the transfer goes to the correct chain.</p>
-          <div style="display:grid; gap:0.8rem; margin-top:1rem;">
+          <div class="wallet-list">
             {wallets.map((wallet) => (
               <div
                 class="glass card wallet-card wallet-card--support"
@@ -107,16 +107,43 @@ const wallets = [
   </section>
 
   <style>
+    .support-page {
+      padding-top: clamp(2.8rem, 5vw, 4.6rem);
+      padding-bottom: clamp(3.6rem, 6vw, 5rem);
+    }
+
+    .support-shell {
+      display: grid;
+      gap: 1.2rem;
+    }
+
     .support-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: start;
+      gap: 1rem;
+    }
+
+    .support-hero {
+      min-width: 0;
     }
 
     .support-panel {
       padding: 1.4rem;
       border-radius: 28px;
       background: linear-gradient(180deg, rgba(10, 18, 34, 0.76), rgba(6, 12, 24, 0.92));
+      min-width: 0;
+    }
+
+    .support-options,
+    .wallet-list {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .wallet-list {
+      gap: 0.8rem;
+      margin-top: 1rem;
     }
 
     .support-option {
@@ -234,7 +261,8 @@ const wallets = [
       font-size: 0.84rem;
       line-height: 1.35;
       letter-spacing: 0.015em;
-      overflow: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
       white-space: nowrap;
       user-select: none;
       -webkit-user-select: none;
@@ -321,13 +349,45 @@ const wallets = [
     }
 
     @media (max-width: 640px) {
+      .support-panel {
+        padding: 1rem;
+        border-radius: 22px;
+      }
+
+      .wallet-card--support,
+      .support-option {
+        padding: 0.95rem;
+      }
+
       .wallet-address-field {
+        flex-direction: column;
         align-items: stretch;
+        gap: 0;
+      }
+
+      .wallet-address-field code {
+        width: 100%;
+        padding-bottom: 0.7rem;
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
 
       .wallet-copy-button {
-        min-width: 4rem;
-        padding: 0 0.8rem;
+        width: 100%;
+        min-width: 0;
+        min-height: 2.7rem;
+        padding: 0.75rem 0.8rem;
+        border-left: 0;
+        border-top: 1px solid var(--wallet-border);
+        border-radius: 0 0 10px 10px;
+      }
+
+      .wallet-warning-callout {
+        padding: 0.95rem 0.95rem 0.95rem 1rem;
+      }
+
+      .wallet-warning-callout::before {
+        left: 0.55rem;
       }
     }
   </style>

@@ -46,6 +46,7 @@ const icon = title === 'Styling examples' ? '📖' : '⚡'
     border: 1px solid color-mix(in srgb, var(--accent) 85%, transparent);
     background: linear-gradient(180deg, rgba(14, 23, 44, 0.94), rgba(11, 19, 38, 0.96));
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    min-width: 0;
   }
 
   .try-live--vue {
@@ -127,6 +128,28 @@ const icon = title === 'Styling examples' ? '📖' : '⚡'
     .try-live {
       grid-template-columns: 1fr;
       justify-items: start;
+      padding: 1.2rem 1.15rem;
+      gap: 0.9rem;
+    }
+
+    .try-live__title {
+      font-size: 1.3rem;
+    }
+
+    .try-live__button {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .try-live {
+      border-radius: 18px;
+      padding: 1rem;
+    }
+
+    .try-live__description {
+      font-size: 0.9rem;
     }
   }
 </style>

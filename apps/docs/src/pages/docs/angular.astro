@@ -188,8 +188,8 @@ const inlineStylesCode = `<drm-countries-flags
   description="Angular 17+ standalone component for country selection with flag icons. Supports ngModel, formControl and reactive forms."
   currentPath="/docs/angular"
 >
-  <div class="shell" style="padding: 3rem 0 5rem;">
-    <div style="max-width: 820px;">
+  <div class="shell doc-page">
+    <div class="doc-page__content doc-page__content--narrow">
 
       <!-- Header -->
       <p class="eyebrow">Implementation</p>
@@ -296,7 +296,8 @@ const inlineStylesCode = `<drm-countries-flags
       <section class="doc-section">
         <h2 class="doc-h2">Props / Inputs</h2>
         <div class="glass card--xl">
-          <table class="api-table">
+          <div class="doc-table-wrap">
+            <table class="api-table">
             <thead>
               <tr><th>Input</th><th>Type</th><th>Default</th><th>Description</th></tr>
             </thead>
@@ -310,7 +311,8 @@ const inlineStylesCode = `<drm-countries-flags
               <tr><td><code>styles</code></td><td><code>CountriesFlagsStyles</code></td><td><code>&#123;&#125;</code></td><td>Inline styles by component slot.</td></tr>
               <tr><td><code>(valueChange)</code></td><td><code>CountryChangeEvent</code></td><td>—</td><td>Emits <code>&#123; country, code &#125;</code>.</td></tr>
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -329,8 +331,18 @@ const inlineStylesCode = `<drm-countries-flags
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--line);
   }
-  .api-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-  .api-table th { text-align: left; padding: 0.65rem 1rem; color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--line); font-weight: var(--weight-bold); }
-  .api-table td { padding: 0.75rem 1rem; color: var(--text-soft); border-bottom: 1px solid var(--line); vertical-align: top; }
-  .api-table tr:last-child td { border-bottom: none; }
+
+  .doc-page__content--narrow {
+    max-width: 820px;
+  }
+
+  @media (max-width: 640px) {
+    .doc-section {
+      margin-bottom: 2.2rem;
+    }
+
+    .doc-h2 {
+      font-size: 1.3rem;
+    }
+  }
 </style>

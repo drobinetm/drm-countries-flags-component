@@ -7,4 +7,4 @@ export type {
   CountriesFlagsStyles,
   CountriesFlagsStyleObject,
   CountriesFlagsStyleValue,
-} from '@drobinetm/countries-flags-core'
+} from './core/index'

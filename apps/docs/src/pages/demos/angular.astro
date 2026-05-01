@@ -137,6 +137,7 @@ const componentCode = `<drm-countries-flags
 
   .framework-demo__runtime-mount {
     padding: 0;
+    min-width: 0;
   }
 
   .framework-demo__runtime-mount :global(app-root) {
@@ -165,6 +166,21 @@ const componentCode = `<drm-countries-flags
   @media (max-width: 860px) {
     .framework-demo__grid {
       grid-template-columns: 1fr;
+    }
+
+    .framework-demo__panel-title {
+      font-size: 1.55rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .framework-demo__title {
+      font-size: clamp(2.15rem, 10vw, 3rem);
+    }
+
+    .framework-demo__lead {
+      font-size: 1rem;
+      line-height: 1.6;
     }
   }
 </style>

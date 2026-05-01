@@ -4,8 +4,5 @@
     "entryFile": "src/index.ts",
     "cssUrl": "inline"
   },
-  "allowedNonPeerDependencies": [
-    "@drobinetm/countries-flags-core"
-  ],
   "dest": "dist"
 }

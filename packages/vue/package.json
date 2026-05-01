@@ -1,6 +1,6 @@
 {
   "name": "@drobinetm/vue-countries-flags",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vue 3 Composition API component to display a country selector with flag icons",
   "author": "Diovi Robinet",
   "license": "MIT",
@@ -53,10 +53,9 @@
     "vue": ">=3.4.0",
     "flag-icons": ">=7.0.0"
   },
-  "dependencies": {
-    "@drobinetm/countries-flags-core": "workspace:*"
-  },
   "devDependencies": {
+    "@drobinetm/countries-flags-core": "workspace:*",
+    "country-list": "^2.3.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "typescript": "^5.4.5",
     "vite": "8.0.5",

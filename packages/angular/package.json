@@ -37,8 +37,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "ng-packagr -p ng-package.json && node ./scripts/postbuild.mjs",
-    "dev": "ng-packagr -p ng-package.json --watch",
+    "sync-core": "node ./scripts/sync-core.mjs",
+    "build": "pnpm run sync-core && ng-packagr -p ng-package.json && node ./scripts/postbuild.mjs",
+    "dev": "pnpm run sync-core && ng-packagr -p ng-package.json --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "clean": "rm -rf dist"
@@ -49,10 +50,10 @@
     "@angular/forms": ">=17.0.0",
     "flag-icons": ">=7.0.0"
   },
-  "dependencies": {
-    "@drobinetm/countries-flags-core": "workspace:*"
-  },
   "devDependencies": {
+    "@drobinetm/countries-flags-core": "workspace:*",
+    "@types/country-list": "^2.1.4",
+    "country-list": "^2.3.0",
     "@angular/common": "^19.0.0",
     "@angular/compiler": "^19.0.0",
     "@angular/compiler-cli": "^19.0.0",

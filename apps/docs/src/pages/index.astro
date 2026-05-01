@@ -36,7 +36,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
       </div>
 
       <!-- Right: install card -->
-      <div style="display:flex; flex-direction: column; gap: var(--gap);">
+      <div class="hero-side">
         <div class="glass card--xl install-preview" data-aos="zoom-in-up" data-aos-delay="220" data-aos-duration="1350">
           <p class="eyebrow" style="margin-bottom:0.7rem; font-size: 0.72rem;">Quick install</p>
 
@@ -142,7 +142,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
           Pick your implementation
         </h2>
 
-      <div class="framework-grid">
+      <div class="framework-grid framework-grid--landing">
         <!-- Angular -->
         <article class="glass card--xl fw-card fw-card--angular" data-aos="zoom-in-up" data-aos-delay="40" data-aos-duration="1150">
           <div class="fw-card__header">
@@ -229,7 +229,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         </h2>
 
       <div class="glass card--xl" data-aos="fade-up" data-aos-duration="1100">
-        <div style="overflow-x: auto;">
+        <div class="doc-table-wrap">
           <table class="api-table">
             <thead>
               <tr>
@@ -297,9 +297,9 @@ import BaseLayout from '../layouts/BaseLayout.astro'
         </p>
       </div>
 
-      <div class="glass card--xl" data-aos="zoom-in-up" data-aos-delay="120" data-aos-duration="1150">
-        <p class="eyebrow" style="font-size: 0.72rem; margin-bottom: 0.6rem;">CSS variables</p>
-        <pre><code>drm-countries-flags, .drm-cf &#123;
+       <div class="glass card--xl theming-preview" data-aos="zoom-in-up" data-aos-delay="120" data-aos-duration="1150">
+         <p class="eyebrow" style="font-size: 0.72rem; margin-bottom: 0.6rem;">CSS variables</p>
+         <pre><code>drm-countries-flags, .drm-cf &#123;
   --drm-cf-bg: rgba(10, 18, 34, 0.76);
   --drm-cf-border: rgba(255,255,255, 0.08);
   --drm-cf-border-hover: rgba(115,190,255, 0.24);
@@ -336,6 +336,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
   .hero-copy {
     display: flex;
     flex-direction: column;
+    min-width: 0;
   }
 
   .hero-actions {
@@ -345,8 +346,16 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     flex-wrap: wrap;
   }
 
+  .hero-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    min-width: 0;
+  }
+
   .install-preview {
     padding: 1.6rem;
+    min-width: 0;
   }
 
   .install-preview pre {
@@ -365,8 +374,20 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     flex-wrap: wrap;
   }
 
+  .fw-card {
+    min-width: 0;
+  }
+
   .fw-card pre {
     font-size: 0.82rem;
+  }
+
+  .theming-preview {
+    min-width: 0;
+  }
+
+  .theming-preview pre {
+    min-width: 0;
   }
 
   .fw-card--angular {
@@ -468,47 +489,83 @@ import BaseLayout from '../layouts/BaseLayout.astro'
     color: #08291a;
   }
 
-  /* API table */
-  .api-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-  }
-
-  .api-table th {
-    text-align: left;
-    padding: 0.65rem 1rem;
-    color: var(--text-muted);
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid var(--line);
-    font-weight: var(--weight-bold);
-  }
-
-  .api-table td {
-    padding: 0.75rem 1rem;
-    color: var(--text-soft);
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
-  }
-
-  .api-table tr:last-child td {
-    border-bottom: none;
-  }
-
-  .api-table tr:hover td {
-    background: rgba(255, 255, 255, 0.02);
-  }
-
   @media (max-width: 860px) {
     .hero-actions {
       gap: 0.8rem;
     }
 
+    .install-preview {
+      padding: 1.25rem;
+    }
+
     .landing-demo-banner {
       grid-template-columns: 1fr;
       justify-items: start;
+    }
+
+    .fw-card {
+      padding: 1.45rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .landing-section + .landing-section {
+      margin-top: 2.2rem;
+    }
+
+    .hero-section {
+      padding-top: 1.5rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+    }
+
+    .install-preview {
+      padding: 1rem;
+    }
+
+    .feature-grid,
+    .framework-grid {
+      gap: 0.9rem;
+    }
+
+    .fw-card__header {
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+
+    .fw-card {
+      padding: 1rem;
+    }
+
+    .fw-card .panel-title {
+      overflow-wrap: anywhere;
+    }
+
+    .fw-card pre,
+    .theming-preview pre {
+      font-size: 0.76rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-x: hidden;
+    }
+
+    .theming-preview {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .framework-grid--landing .button {
+      padding-inline: 0.85rem;
+      font-size: 0.88rem;
+    }
+
+    .fw-card pre,
+    .theming-preview pre {
+      font-size: 0.72rem;
+      line-height: 1.5;
     }
   }
 </style>

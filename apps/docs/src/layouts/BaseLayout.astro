@@ -29,7 +29,7 @@ const navState = {
 ---
 
 <!doctype html>
-<html lang="en">
+    <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,7 +40,7 @@ const navState = {
   </head>
   <body>
     <!-- Topbar -->
-    <header class="topbar">
+    <header class="topbar" id="top">
       <div class="shell topbar__inner">
         <a class="brand" href="/">
           <span class="brand__mark" aria-hidden="true">
@@ -88,7 +88,7 @@ const navState = {
     </main>
 
     <script>
-      import '../scripts/aos-init'
+      import '../scripts/aos-init.ts'
     </script>
 
     <script is:inline>
@@ -111,7 +111,52 @@ const navState = {
       window.addEventListener('hashchange', syncThemingNav)
     </script>
 
+    <script is:inline>
+      const setupBackToTop = () => {
+        const button = document.querySelector('.back-to-top')
+        if (!(button instanceof HTMLElement)) return
+        if (button.dataset.bound === 'true') return
+
+        button.dataset.bound = 'true'
+
+        const syncVisibility = () => {
+          button.dataset.visible = window.scrollY > 320 ? 'true' : 'false'
+        }
+
+        button.addEventListener('click', (event) => {
+          event.preventDefault()
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+          window.history.replaceState(null, '', '#top')
+        })
+
+        syncVisibility()
+        window.addEventListener('scroll', syncVisibility, { passive: true })
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupBackToTop, { once: true })
+      } else {
+        setupBackToTop()
+      }
+
+      document.addEventListener('astro:page-load', setupBackToTop)
+    </script>
+
     <!-- Footer -->
+    <a class="back-to-top" href="#top" aria-label="Back to top" data-visible="false">
+      <span class="back-to-top__icon" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10 15V5M10 5L5.75 9.25M10 5L14.25 9.25"
+            stroke="currentColor"
+            stroke-width="1.9"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </span>
+    </a>
+
     <footer class="footer">
       <div class="shell">
         <div class="footer__inner">

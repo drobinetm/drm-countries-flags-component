@@ -44,6 +44,7 @@
   position: relative;
   overflow: visible !important;
   min-height: 15.1rem;
+  min-width: 0;
   border: 1px solid rgba(62, 76, 104, 0.46) !important;
   border-radius: 1.85rem !important;
   background: linear-gradient(180deg, rgba(17, 21, 36, 0.985), rgba(15, 19, 33, 0.99)) !important;
@@ -136,6 +137,8 @@
   line-height: 1.2 !important;
   letter-spacing: 0.01em;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .framework-demo__runtime-mount :where(.drm-cf, drm-countries-flags) {
@@ -284,4 +287,29 @@
 
 .framework-demo__runtime-mount :where(.demo-notes-card__event-code) {
   color: #8fdcff !important;
+}
+
+@media (max-width: 640px) {
+  .framework-demo__runtime-mount :where(.demo-card) {
+    min-height: auto;
+    border-radius: 1.4rem !important;
+  }
+
+  .framework-demo__runtime-mount :where(.demo-card__title) {
+    font-size: 1.1rem !important;
+  }
+
+  .framework-demo__runtime-mount :where(.demo-card__copy) {
+    font-size: 0.82rem !important;
+    line-height: 1.45rem !important;
+  }
+
+  .framework-demo__runtime-mount :where(.demo-card__filter-code) {
+    font-size: 0.8rem !important;
+  }
+
+  .framework-demo__runtime-mount :where(.drm-cf, drm-countries-flags) {
+    width: 100% !important;
+    max-width: none !important;
+  }
 }

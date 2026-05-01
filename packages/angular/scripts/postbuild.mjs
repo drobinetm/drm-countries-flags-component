@@ -24,7 +24,6 @@ distPackage.exports = {
 }
 distPackage.dependencies = {
   ...distPackage.dependencies,
-  '@drobinetm/countries-flags-core': '^1.0.0',
+  'country-list': '^2.3.0',
 }
-
 writeFileSync(distPackagePath, `${JSON.stringify(distPackage, null, 2)}\n`)

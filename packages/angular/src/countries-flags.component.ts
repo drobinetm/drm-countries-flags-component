@@ -14,19 +14,14 @@ import {
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
-import {
-  getCountries,
-  getCountryByCode,
-  getOptionStyle,
-  flagClass,
-} from '@drobinetm/countries-flags-core'
+import { getCountries, getCountryByCode, getOptionStyle, flagClass } from './core/index'
 import type {
   Country,
   CountriesFlagsProps,
   CountryChangeEvent,
   CountriesFlagsClassNames,
   CountriesFlagsStyles,
-} from '@drobinetm/countries-flags-core'
+} from './core/index'
 
 @Component({
   selector: 'drm-countries-flags',
