@@ -5,17 +5,11 @@ on:
     branches: [main, develop]
     paths:
       - apps/docs/**
-      - packages/core/**
-      - packages/react/**
-      - packages/vue/**
       - .github/workflows/docs.yml
   pull_request:
     branches: [main]
     paths:
       - apps/docs/**
-      - packages/core/**
-      - packages/react/**
-      - packages/vue/**
       - .github/workflows/docs.yml
   workflow_dispatch:
 
