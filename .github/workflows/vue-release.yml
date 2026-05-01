@@ -1,0 +1,65 @@
+name: Vue Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - packages/vue/**
+      - packages/core/**
+      - .github/workflows/vue-release.yml
+  workflow_dispatch:
+    inputs:
+      dist-tag:
+        description: npm dist-tag to publish
+        required: false
+        default: latest
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  release-vue:
+    name: Release Vue package
+    runs-on: ubuntu-latest
+    env:
+      NPM_DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist-tag || 'latest' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+          provenance: true
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Core package
+        run: pnpm --filter @drobinetm/countries-flags-core build
+
+      - name: Build Vue package
+        run: pnpm --filter @drobinetm/vue-countries-flags build
+
+      - name: Ensure version is not already published
+        run: |
+          VERSION=$(node -p "require('./packages/vue/package.json').version")
+          if npm view "@drobinetm/vue-countries-flags@${VERSION}" version >/dev/null 2>&1; then
+            echo "Version ${VERSION} is already published to npm"
+            exit 1
+          fi
+
+      - name: Release Vue package
+        run: npm publish --access public --tag "$NPM_DIST_TAG"
+        working-directory: packages/vue

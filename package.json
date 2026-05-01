@@ -5,6 +5,7 @@
   "description": "Monorepo for @drobinetm countries-flags components (Angular, React, Vue) with Astro docs site",
   "author": "Diovi Robinet",
   "license": "MIT",
+  "packageManager": "pnpm@10.29.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/drobinetm/drm-countries-flags-component"

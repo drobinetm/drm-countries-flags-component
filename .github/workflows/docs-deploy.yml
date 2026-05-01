@@ -1,0 +1,49 @@
+name: Docs Deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - apps/docs/**
+      - packages/core/**
+      - packages/react/**
+      - packages/vue/**
+      - .github/workflows/docs-deploy.yml
+  workflow_dispatch:
+
+concurrency:
+  group: docs-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy docs to Netlify
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build docs dependencies
+        run: pnpm --filter @drobinetm/countries-flags-core build && pnpm --filter @drobinetm/react-countries-flags build && pnpm --filter @drobinetm/vue-countries-flags build
+
+      - name: Build docs app
+        run: pnpm --filter @drobinetm/docs-countries-flags build
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: pnpm dlx --package=netlify-cli netlify deploy --dir=apps/docs/dist --prod --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
