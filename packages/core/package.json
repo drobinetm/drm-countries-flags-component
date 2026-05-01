@@ -1,0 +1,53 @@
+{
+  "name": "@drobinetm/countries-flags-core",
+  "version": "1.0.0",
+  "description": "Shared types, data and utilities for @drobinetm countries-flags components",
+  "author": "Diovi Robinet",
+  "license": "MIT",
+  "keywords": [
+    "countries",
+    "flags",
+    "iso",
+    "select",
+    "component",
+    "core"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drobinetm/drm-countries-flags-component",
+    "directory": "packages/core"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "country-list": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/country-list": "^2.1.4",
+    "typescript": "^5.4.5",
+    "vite": "8.0.5",
+    "vite-plugin-dts": "^3.9.1"
+  }
+}
