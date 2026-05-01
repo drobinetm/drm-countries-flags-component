@@ -1,0 +1,41 @@
+{
+  "name": "drm-countries-flags-component",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for @drobinetm countries-flags components (Angular, React, Vue) with Astro docs site",
+  "author": "Diovi Robinet",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drobinetm/drm-countries-flags-component"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:core": "pnpm --filter @drobinetm/countries-flags-core build",
+    "build:angular": "pnpm --filter @drobinetm/angular-countries-flags build",
+    "build:react": "pnpm --filter @drobinetm/react-countries-flags build",
+    "build:vue": "pnpm --filter @drobinetm/vue-countries-flags build",
+    "build:docs": "pnpm --filter @drobinetm/docs-countries-flags build",
+    "dev:docs": "pnpm --filter @drobinetm/docs-countries-flags dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean && rm -rf node_modules",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
+    "eslint": "^9.39.4",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "vue-eslint-parser": "^10.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm --filter @drobinetm/countries-flags-core build && pnpm --filter @drobinetm/react-countries-flags build && pnpm --filter @drobinetm/vue-countries-flags build && pnpm --filter @drobinetm/docs-countries-flags build"
+  publish = "apps/docs/dist"
+
+[build.environment]
+  NODE_VERSION = "22"

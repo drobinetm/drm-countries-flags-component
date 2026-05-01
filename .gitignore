@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+coverage/
+.turbo/
+
+# Angular specific
+.angular/
+
+# Astro
+.astro/
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# AI
+AGENTS.md
+PRD.md
+RUN.md
+.pi
+.qwen
+.windsurf
+.claude
+.agents
+.kiro
+.skills-lock.json
+skills-lock.json
+.skills.json
+skills.json
+openspec
+.opencode
+apps/docs/DESIGN.md
