@@ -1,6 +1,6 @@
 {
   "name": "@drobinetm/vue-countries-flags",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Vue 3 Composition API component to display a country selector with flag icons",
   "author": "Diovi Robinet",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "composition-api",
     "typescript"
   ],
+  "homepage": "https://drm-countries-flags.netlify.app/docs/vue/",
   "repository": {
     "type": "git",
     "url": "https://github.com/drobinetm/drm-countries-flags-component",
