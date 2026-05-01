@@ -1,0 +1,67 @@
+{
+  "name": "@drobinetm/vue-countries-flags",
+  "version": "1.0.0",
+  "description": "Vue 3 Composition API component to display a country selector with flag icons",
+  "author": "Diovi Robinet",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "vue3",
+    "countries",
+    "flags",
+    "select",
+    "dropdown",
+    "iso",
+    "composition-api",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drobinetm/drm-countries-flags-component",
+    "directory": "packages/vue"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/styles.css"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && cp src/styles.d.ts dist/styles.d.ts",
+    "dev": "vite build --watch",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint src --ext .ts,.vue",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "vue": ">=3.4.0",
+    "flag-icons": ">=7.0.0"
+  },
+  "dependencies": {
+    "@drobinetm/countries-flags-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "typescript": "^5.4.5",
+    "vite": "8.0.5",
+    "vite-plugin-dts": "^3.9.1",
+    "vue": "^3.4.21",
+    "vue-tsc": "^2.0.10"
+  }
+}

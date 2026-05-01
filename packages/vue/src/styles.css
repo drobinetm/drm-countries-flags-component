@@ -1,0 +1,153 @@
+/* ─── DRM Countries Flags — Shared CSS (consumed by React & Vue bundles) ── */
+
+.drm-cf {
+  position: relative;
+  display: inline-block;
+  min-width: 220px;
+  font-family: var(--drm-cf-font, inherit);
+}
+
+.drm-cf--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Trigger button */
+.drm-cf__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 12px;
+  background: var(--drm-cf-bg, rgba(10, 18, 34, 0.76));
+  border: 1px solid var(--drm-cf-border, rgba(255, 255, 255, 0.08));
+  border-radius: var(--drm-cf-radius, 14px);
+  color: var(--drm-cf-text, #f7f9ff);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.drm-cf__trigger:hover:not(:disabled) {
+  border-color: var(--drm-cf-border-hover, rgba(115, 190, 255, 0.24));
+}
+
+.drm-cf__trigger:focus-visible {
+  outline: none;
+  border-color: var(--drm-cf-focus, #0f6dff);
+  box-shadow: 0 0 0 3px rgba(15, 109, 255, 0.24);
+}
+
+/* Trigger content */
+.drm-cf__trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.drm-cf__placeholder {
+  color: var(--drm-cf-placeholder, rgba(196, 209, 236, 0.56));
+}
+
+.drm-cf__label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chevron */
+.drm-cf__chevron {
+  flex-shrink: 0;
+  transition: transform 180ms ease;
+  color: var(--drm-cf-text-soft, rgba(232, 239, 255, 0.74));
+}
+
+.drm-cf__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* Backdrop (click-away to close) */
+.drm-cf__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+}
+
+/* Dropdown list */
+.drm-cf__list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-height: 260px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--drm-cf-dropdown-bg, rgba(7, 14, 28, 0.96));
+  border: 1px solid var(--drm-cf-border, rgba(255, 255, 255, 0.08));
+  border-radius: var(--drm-cf-radius, 14px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.drm-cf__list::-webkit-scrollbar { width: 4px; }
+.drm-cf__list::-webkit-scrollbar-track { background: transparent; }
+.drm-cf__list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+/* Option */
+.drm-cf__option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--drm-cf-text, #f7f9ff);
+  font-size: 0.9rem;
+  transition: background 120ms ease;
+}
+
+.drm-cf__option:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.drm-cf__option--selected {
+  background: rgba(15, 109, 255, 0.16);
+  color: var(--drm-cf-accent, #8ad9ff);
+}
+
+.drm-cf__option--active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.drm-cf__empty {
+  padding: 12px;
+  color: var(--drm-cf-placeholder, rgba(196, 209, 236, 0.56));
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Flag icon */
+.drm-cf__flag {
+  flex-shrink: 0;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.drm-cf__option-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
