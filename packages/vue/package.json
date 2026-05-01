@@ -35,7 +35,7 @@
     },
     "./styles": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/styles.css"
+      "default": "./dist/vue-countries-flags.css"
     },
     "./package.json": "./package.json"
   },

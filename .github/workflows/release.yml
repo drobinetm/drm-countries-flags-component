@@ -1,13 +1,19 @@
-name: React Release
+name: Release
 
 on:
   push:
     branches:
       - main
     paths:
-      - packages/react/**
+      - .changeset/**
       - packages/core/**
-      - .github/workflows/react-release.yml
+      - packages/react/**
+      - packages/vue/**
+      - packages/angular/**
+      - package.json
+      - pnpm-lock.yaml
+      - .npmrc
+      - .github/workflows/release.yml
   workflow_dispatch:
     inputs:
       dist-tag:
@@ -18,12 +24,13 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
   id-token: write
 
 jobs:
-  release-react:
-    name: Release React package
+  release:
+    name: Version or publish packages
     runs-on: ubuntu-latest
     env:
       NPM_DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist-tag || 'latest' }}
@@ -31,6 +38,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -46,20 +55,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build Core package
-        run: pnpm --filter @drobinetm/countries-flags-core build
-
-      - name: Build React package
-        run: pnpm --filter @drobinetm/react-countries-flags build
-
-      - name: Ensure version is not already published
-        run: |
-          VERSION=$(node -p "require('./packages/react/package.json').version")
-          if npm view "@drobinetm/react-countries-flags@${VERSION}" version >/dev/null 2>&1; then
-            echo "Version ${VERSION} is already published to npm"
-            exit 1
-          fi
-
-      - name: Release React package
-        run: npm publish --access public --tag "$NPM_DIST_TAG"
-        working-directory: packages/react
+      - name: Create release PR or publish
+        uses: changesets/action@v1
+        with:
+          version: pnpm version-packages
+          publish: pnpm build:packages && pnpm exec changeset publish --tag "$NPM_DIST_TAG"
+          commit: 'chore: version packages'
+          title: 'chore: version packages'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

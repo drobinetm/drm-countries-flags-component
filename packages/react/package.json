@@ -34,7 +34,7 @@
     },
     "./styles": {
       "types": "./dist/styles.d.ts",
-      "default": "./dist/styles.css"
+      "default": "./dist/react-countries-flags.css"
     },
     "./package.json": "./package.json"
   },
