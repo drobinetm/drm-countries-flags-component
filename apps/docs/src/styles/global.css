@@ -627,6 +627,10 @@ body.aos-active .card[data-aos='zoom-in-up'].aos-animate {
 
 .nav a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.52rem;
   flex: 0 0 auto;
   padding: 0.72rem 0.95rem;
   border-radius: var(--radius-pill);
@@ -638,6 +642,41 @@ body.aos-active .card[data-aos='zoom-in-up'].aos-animate {
   transition:
     color 140ms ease,
     background 140ms ease;
+}
+
+.nav__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.98rem;
+  height: 0.98rem;
+  flex: 0 0 auto;
+  opacity: 0.96;
+}
+
+.nav__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.nav__link--home[aria-current='page'] .nav__icon {
+  color: var(--sky-blue);
+}
+
+.nav__link--angular[aria-current='page'] .nav__icon {
+  color: var(--angular-chip);
+}
+
+.nav__link--react[aria-current='page'] .nav__icon {
+  color: var(--react-blue);
+}
+
+.nav__link--vue[aria-current='page'] .nav__icon {
+  color: var(--vue-chip);
+}
+
+.nav__link--support[aria-current='page'] .nav__icon {
+  color: #f5bd5f;
 }
 
 .nav a:hover {
@@ -948,7 +987,6 @@ pre code {
   .nav a {
     flex: 1 1 calc(50% - 0.75rem);
     min-width: 8.5rem;
-    text-align: center;
   }
   .github-button {
     width: 100%;

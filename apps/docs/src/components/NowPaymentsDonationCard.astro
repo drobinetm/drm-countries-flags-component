@@ -13,7 +13,7 @@ interface Props {
 const {
   widgetUrl,
   docsUrl,
-  eyebrow = 'Donation widget',
+  eyebrow = 'Donation',
   description =
     'NOWPayments is a crypto payment platform that lets supporters donate using multiple cryptocurrencies through a secure checkout flow.',
   buttonLabel = 'Learn more about NOWPayments',
@@ -23,7 +23,7 @@ const {
 } = Astro.props
 ---
 
-<div class="np-card" aria-label="NOWPayments donation widget panel">
+<div class="glass card np-card" aria-label="NOWPayments donation widget panel">
   <div class="np-card__header">
     <div class="eyebrow">{eyebrow}</div>
     <p class="panel-copy np-card__intro">{description}</p>
@@ -86,6 +86,9 @@ const {
     min-width: 0;
     display: grid;
     gap: 1rem;
+    padding: 1.4rem;
+    border-radius: 28px;
+    background: linear-gradient(180deg, rgba(10, 18, 34, 0.76), rgba(6, 12, 24, 0.92));
   }
 
   .np-card__header,
@@ -94,8 +97,13 @@ const {
     min-width: 0;
   }
 
+  .np-card__header {
+    display: grid;
+    gap: 0.9rem;
+  }
+
   .np-card__intro {
-    margin: 0.2rem 0 1rem;
+    margin: 0;
     max-width: 56ch;
   }
 
@@ -160,12 +168,11 @@ const {
     display: grid;
     justify-items: center;
     gap: 0.9rem;
-    padding: 0;
-    border-radius: 0;
+    padding: 1rem;
+    border-radius: 22px;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    background: transparent;
-    box-shadow: none;
-    border: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
     text-align: center;
   }
 
@@ -173,9 +180,6 @@ const {
     display: grid;
     place-items: center;
     width: 100%;
-    padding: 0;
-    border-radius: 0;
-    background: transparent;
   }
 
   .np-card__widget-frame {
@@ -243,6 +247,11 @@ const {
   }
 
   @media (max-width: 640px) {
+    .np-card {
+      padding: 1rem;
+      border-radius: 22px;
+    }
+
     .np-card__form {
       width: 100%;
     }

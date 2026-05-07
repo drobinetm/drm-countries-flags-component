@@ -59,11 +59,52 @@ const navState = {
         </a>
         <div class="topbar__actions">
           <nav class="nav" aria-label="Primary">
-            <a href="/" aria-current={navState.home ? 'page' : undefined}>Home</a>
-            <a href="/docs/angular" data-nav-framework="angular" aria-current={navState.angular ? 'page' : undefined}>Angular</a>
-            <a href="/docs/react" data-nav-framework="react" aria-current={navState.react ? 'page' : undefined}>React</a>
-            <a href="/docs/vue" data-nav-framework="vue" aria-current={navState.vue ? 'page' : undefined}>Vue</a>
-            <a href="/support" aria-current={navState.support ? 'page' : undefined}>Support</a>
+            <a class="nav__link nav__link--home" href="/" aria-current={navState.home ? 'page' : undefined}>
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.5 8.25L10 3L16.5 8.25V15.5C16.5 15.8978 16.342 16.2794 16.0607 16.5607C15.7794 16.842 15.3978 17 15 17H5C4.60218 17 4.22064 16.842 3.93934 16.5607C3.65804 16.2794 3.5 15.8978 3.5 15.5V8.25Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                  <path d="M7.75 17V10.75H12.25V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <span>Home</span>
+            </a>
+            <a class="nav__link nav__link--angular" href="/docs/angular" data-nav-framework="angular" aria-current={navState.angular ? 'page' : undefined}>
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 2.5L15.75 4.55L14.9 12.1L10 14.85L5.1 12.1L4.25 4.55L10 2.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                  <path d="M10 6.15L7.45 11.65H8.95L9.5 10.35H10.48L11.05 11.65H12.55L10 6.15ZM9.96 9.18L10 9.08L10.04 9.18H9.96Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <span>Angular</span>
+            </a>
+            <a class="nav__link nav__link--react" href="/docs/react" data-nav-framework="react" aria-current={navState.react ? 'page' : undefined}>
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="1.55" fill="currentColor"></circle>
+                  <ellipse cx="10" cy="10" rx="6.35" ry="2.65" stroke="currentColor" stroke-width="1.4"></ellipse>
+                  <ellipse cx="10" cy="10" rx="6.35" ry="2.65" transform="rotate(60 10 10)" stroke="currentColor" stroke-width="1.4"></ellipse>
+                  <ellipse cx="10" cy="10" rx="6.35" ry="2.65" transform="rotate(120 10 10)" stroke="currentColor" stroke-width="1.4"></ellipse>
+                </svg>
+              </span>
+              <span>React</span>
+            </a>
+            <a class="nav__link nav__link--vue" href="/docs/vue" data-nav-framework="vue" aria-current={navState.vue ? 'page' : undefined}>
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 4.5H6.45L10 10.35L13.55 4.5H17L10 16L3 4.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                  <path d="M6.45 4.5H8.95L10 6.3L11.05 4.5H13.55L10 10.35L6.45 4.5Z" fill="currentColor"></path>
+                </svg>
+              </span>
+              <span>Vue</span>
+            </a>
+            <a class="nav__link nav__link--support" href="/support" aria-current={navState.support ? 'page' : undefined}>
+              <span class="nav__icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10 16.4L4.68 11.38C3.16 9.95 3.16 7.62 4.68 6.19C6.01 4.94 8.11 4.94 9.44 6.19L10 6.72L10.56 6.19C11.89 4.94 13.99 4.94 15.32 6.19C16.84 7.62 16.84 9.95 15.32 11.38L10 16.4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <span>Support</span>
+            </a>
           </nav>
           <a
             class="github-button"
